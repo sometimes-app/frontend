@@ -1,12 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const HomeScreen = ( {navigation} ) => {
+  return (
+    <View style={styles.container}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Main"
+        onPress={() => navigation.navigate('Main')}
+      />
+      <StatusBar style="auto" />
+    </View>
+  )
+}
+
+const MainScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Main Screen</Text>
+      <Button
+        title="Get Motivated"
+        onPress={() => {}}
+      />
+      <StatusBar style="auto" />
+    </View>
+  )
+}
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='Main' component={MainScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
