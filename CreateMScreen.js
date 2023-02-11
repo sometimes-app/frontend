@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-const CreateMScreen = () => {
+const CreateMScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
         <Text>Create Message Screen</Text>
         <Button
-          title="Get Motivated"
-          onPress={() => {}}
+          title="Send"
+          onPress={() => {navigation.navigate('Main')}}
+        />
+        <Button
+          title="Back"
+          onPress={() => {navigation.navigate('Friends')}}
         />
         <StatusBar style="auto" />
       </View>

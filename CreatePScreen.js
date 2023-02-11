@@ -9,6 +9,10 @@ const CreatePScreen = ( {navigation} ) => {
           title="Back"
           onPress={() => {navigation.navigate('Login')}}
         />
+        <Button
+          title="Create"
+          onPress={() => {navigation.navigate('Main')}}
+        />
         <StatusBar style="auto" />
       </View>
     )

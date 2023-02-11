@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-const FriendsScreen = () => {
+const FriendsScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
-        <Text>Friend Screen</Text>
+        <Text>Friends Screen</Text>
         <Button
-          title="Get Motivated"
-          onPress={() => {}}
+          title="Pick Friend"
+          onPress={() => {navigation.navigate('CreateM')}}
         />
         <StatusBar style="auto" />
       </View>
