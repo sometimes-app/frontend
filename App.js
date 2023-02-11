@@ -5,7 +5,6 @@ import LoginScreen from './LoginScreen'
 import CreatePScreen from './CreatePScreen'
 import CreateMScreen from './CreateMScreen'
 import FriendsScreen from './FriendsScreen'
-import MessageScreen from './MessageScreen'
 import ProfileScreen from './ProfileScreen'
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +18,6 @@ export default function App() {
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='CreateP' component={CreatePScreen} />
         <Stack.Screen name='Main' component={MainScreen} />
-        <Stack.Screen name='Message' component={MessageScreen} />
         <Stack.Screen name='Friends' component={FriendsScreen} />
         <Stack.Screen name='CreateM' component={CreateMScreen} />
         <Stack.Screen name='Profile' component={ProfileScreen} />

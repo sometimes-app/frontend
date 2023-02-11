@@ -7,7 +7,19 @@ const MainScreen = ( {navigation} ) => {
         <Text>Main Screen</Text>
         <Button
           title="Get Motivated"
-          onPress={() => {navigation.navigate('Message')}}
+          onPress={() => {}}
+        />
+        <Button
+          title="See Previous Messages"
+          onPress={() => {}}
+        />
+        <Button
+          title="Help a friend"
+          onPress={() => {navigation.navigate('Friends')}}
+        />
+        <Button
+          title="Profile"
+          onPress={() => {navigation.navigate('Profile')}}
         />
         <StatusBar style="auto" />
       </View>
