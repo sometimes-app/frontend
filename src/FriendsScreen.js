@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+/** Screen to pick a friend to send a message to. */
 const FriendsScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
