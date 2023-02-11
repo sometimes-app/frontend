@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import MainScreen from './MainScreen'
-import LoginScreen from './LoginScreen'
-import CreatePScreen from './CreatePScreen'
-import CreateMScreen from './CreateMScreen'
-import FriendsScreen from './FriendsScreen'
-import ProfileScreen from './ProfileScreen'
+import MainScreen from './src/MainScreen'
+import LoginScreen from './src/LoginScreen'
+import CreatePScreen from './src/CreatePScreen'
+import CreateMScreen from './src/CreateMScreen'
+import FriendsScreen from './src/FriendsScreen'
+import ProfileScreen from './src/ProfileScreen'
 
 const Stack = createNativeStackNavigator();
 
