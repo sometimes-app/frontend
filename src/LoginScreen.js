@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import AnimatedText from './AnimatedText';
 
 const LoginScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
+        <AnimatedText text={'Sometimes'}></AnimatedText>
+
         <Text>Login Screen</Text>
         <Button
           title="Create Profile"
