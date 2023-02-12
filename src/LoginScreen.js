@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import FadeInAnimatedText from './FadeInAnimatedText';
 
+/** Screen to pick a profile or create one. */
 const LoginScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
