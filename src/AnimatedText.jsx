@@ -41,12 +41,13 @@ const AnimatedText = ({text}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+    //   backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
     },
     fadingText:{
-        fontSize: 32
+        fontSize: 32,
+        color: 'white'
     },
   });
 
