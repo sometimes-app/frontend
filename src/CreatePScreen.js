@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+/** Create Profile Screen */
 const CreatePScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>

@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import AnimatedText from './AnimatedText';
 
+/** Screen to pick a profile or create one. */
 const LoginScreen = ( {navigation} ) => {
   return (
     <View style={styles.container}>
