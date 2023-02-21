@@ -8,7 +8,7 @@ const LoginScreen = ( {navigation} ) => {
       <View style={styles.container}>
         <FadeInAnimatedText 
           text={'Sometimes'} 
-          byChar={true} 
+          byChar={false} 
           duration={1000}
           textSize={32}
         >
