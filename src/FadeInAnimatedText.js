@@ -21,7 +21,8 @@ const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
 
     const styles = StyleSheet.create({
         text:{
-            fontSize: textSize
+            fontSize: textSize,
+            color: 'white'
         },
       });
 
@@ -81,8 +82,6 @@ const FadeInAnimatedText = ({text, byChar, textSize, duration}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'row',
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
     }

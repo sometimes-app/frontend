@@ -25,3 +25,23 @@ When we initialize a new React Native app, a Babel configuration file, babel.con
 https://www.reactnative.express/react/performance/memo
 
 This is something we should take advantage of to limit rerenders
+
+# UseReducer
+
+This youtube video helped me understand useReducer. Its basically useState on steroids.
+https://youtu.be/RZPAQV7JvNU
+
+# Authentication Research
+
+Option 1: React Navigation Authentication Flow
+https://reactnavigation.org/docs/auth-flow/
+
+Pros: We are already using React Navigation so integration is straight forward
+      No external dependencies
+Cons: Need to Manually build authentication on server side
+
+Option 2: JWT?
+Not sure what this is yet
+
+Option 3: Firebase
+
