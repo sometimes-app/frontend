@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import AnimatedText from './AnimatedText';
+import FadeInAnimatedText from './FadeInAnimatedText';
 
 /** Screen to pick a profile or create one. */
 const LoginScreen = ( {navigation} ) => {
-  return (
-    <View style={styles.container}>
-      <AnimatedText text={'Sometimes'}></AnimatedText>
+    return (
+      <View style={styles.container}>
+        <FadeInAnimatedText 
+          text={'Sometimes'} 
+          byChar={false} 
+          duration={1000}
+          textSize={32}
+        >
+        </FadeInAnimatedText>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('CreateP')}}>
           <Text>Create Profile</Text>
@@ -16,9 +22,9 @@ const LoginScreen = ( {navigation} ) => {
         </TouchableOpacity>
       </View>
       <StatusBar style='light' />
-    </View>
-  )
-}
+      </View>
+    )
+  }
 
   const styles = StyleSheet.create({
     container: {
