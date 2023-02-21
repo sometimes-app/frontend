@@ -13,15 +13,15 @@ const LoginScreen = ( {navigation} ) => {
           textSize={32}
         >
         </FadeInAnimatedText>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('CreateP')}}>
-          <Text>Create Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Main')}}>
-          <Text>Login</Text>
-        </TouchableOpacity>
-      </View>
-      <StatusBar style='light' />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('CreateP')}}>
+            <Text>Create Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Main')}}>
+            <Text>Login</Text>
+          </TouchableOpacity>
+        </View>
+        <StatusBar style='light' />
       </View>
     )
   }
