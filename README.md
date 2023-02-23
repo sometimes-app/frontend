@@ -2,6 +2,11 @@
 
 https://www.npmjs.com/package/eslint-plugin-react-hooks
 
+# Tech Debt
+
+Decide on authentication, email and password should not be it.
+implement linter, eslint?
+
 # Setup Explanation
 
 https://www.reactnative.express/javascript
@@ -43,5 +48,17 @@ Cons: Need to Manually build authentication on server side
 Option 2: JWT?
 Not sure what this is yet
 
-Option 3: Firebase
+Option 3: Firebase by Google
+Pros: Somewhat plug and play
 
+Option 4: Auth0
+Pros: 
+
+# Authentication Decision
+
+I went with firebase. It is made by google and has a good free tier. There are lots of tutorials on how to set it up and the docs are decent. They also have options to connect just about any 3rd party auth. For now I went with username and email but we should setup something else. Maybe phone number (BeReal uses phone # and no password, just 2FA). 
+
+I followed this guide https://docs.expo.dev/guides/using-firebase/
+used "npx expo install firebase"
+added the following packages: 
+"firebase": "^9.17.1"
