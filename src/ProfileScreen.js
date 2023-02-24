@@ -10,6 +10,10 @@ const ProfileScreen = ( {navigation} ) => {
           title="Back"
           onPress={() => {navigation.navigate('Main')}}
         />
+        <Button
+          title="Async Demo"
+          onPress={() => {navigation.navigate('AsyncDemo')}}
+        />
         <StatusBar style="auto" />
       </View>
     )

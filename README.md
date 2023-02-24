@@ -6,6 +6,12 @@ https://www.npmjs.com/package/eslint-plugin-react-hooks
 
 Decide on authentication, email and password should not be it.
 implement linter, eslint?
+move screens in folder
+2 tab instead of 4, no semi-colin, single quotes
+re-authentication if auth has expired. User should not have to log back in
+next message should probably be pulled from async storage when main page is opened -> useEffect with []
+Splash Screen? https://docs.expo.dev/versions/latest/sdk/splash-screen/
+Asset Caching https://docs.expo.dev/archive/classic-updates/preloading-and-caching-assets/#pre-loading-and-caching-assets
 
 # Setup Explanation
 
@@ -74,3 +80,6 @@ Cons: less secure
 Options 2: Keep everything server-side in a database
 Pro: Don't have to deal with local storage
 Con: Slower unless loaded on boot
+
+ON ASYNC-STORAGE BRANCH
+npx expo install @react-native-async-storage/async-storage
