@@ -12,6 +12,7 @@ re-authentication if auth has expired. User should not have to log back in
 next message should probably be pulled from async storage when main page is opened -> useEffect with []
 Splash Screen? https://docs.expo.dev/versions/latest/sdk/splash-screen/
 Asset Caching https://docs.expo.dev/archive/classic-updates/preloading-and-caching-assets/#pre-loading-and-caching-assets
+Fading text needs some help
 
 # Setup Explanation
 
