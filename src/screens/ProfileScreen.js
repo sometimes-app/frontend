@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { authentication } from '../firebaseConfig';
+import { authentication } from '../../firebaseConfig';
 import { signOut } from "firebase/auth"
-import useAuthentication from './useAuthentication';
+import useAuthentication from '../utils/useAuthentication';
 
 
 /** Screen where the profile can be viewed. */

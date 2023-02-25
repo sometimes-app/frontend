@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-/** Create Message Screeen. */
+/** Create Message Screen. */
 const CreateMScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>

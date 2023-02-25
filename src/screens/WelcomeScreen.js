@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import FadeInAnimatedText from './FadeInAnimatedText';
+import FadeInAnimatedText from '../components/FadeInAnimatedText';
 
 /** Screen to pick a profile or create one. */
 const WelcomeScreen = ( {navigation} ) => {

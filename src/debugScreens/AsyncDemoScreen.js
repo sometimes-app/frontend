@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
-import { setStringValue, getMyStringValue, getAllKeys, removeValue, clearAll } from './utils/asyncStorage';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { setStringValue, getStringValue, getAllKeys, removeValue, clearAll } from './../utils/asyncStorage';
 
 /** Async Demo Screen. */
 const CreateMScreen = () => {
@@ -18,7 +18,7 @@ const CreateMScreen = () => {
       }
     
     const handleSearch = () => {
-      getMyStringValue(search)
+      getStringValue(search)
         .then(res => setResult2(res))
     }
 

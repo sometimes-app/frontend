@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { authentication } from '../firebaseConfig'
+import { authentication } from '../../firebaseConfig'
 
 const LoginScreen = ( {navigation} ) => {
     const [email, setEmail] = useState('')
@@ -10,9 +10,6 @@ const LoginScreen = ( {navigation} ) => {
 
     const SignInUser = () => {
         signInWithEmailAndPassword(authentication, email, password)
-        .then(res=> {
-            console.log(res)
-        })
         .catch(err => {
             console.log(err)
         })

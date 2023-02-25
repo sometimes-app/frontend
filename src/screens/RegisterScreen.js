@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { authentication } from './../firebaseConfig'
+import { authentication } from '../../firebaseConfig'
 
 /** Register Screen */
 const RegisterScreen = ( {navigation} ) => {
@@ -12,9 +12,6 @@ const RegisterScreen = ( {navigation} ) => {
 
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password)
-      .then(res=> {
-        console.log(res)
-      })
       .catch(err => {
           console.log(err)
       })

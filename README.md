@@ -13,6 +13,7 @@ next message should probably be pulled from async storage when main page is open
 Splash Screen? https://docs.expo.dev/versions/latest/sdk/splash-screen/
 Asset Caching https://docs.expo.dev/archive/classic-updates/preloading-and-caching-assets/#pre-loading-and-caching-assets
 Fading text needs some help
+Error handling for async storage. Somehow display pop-up telling user to restart app or try again later.
 
 # Setup Explanation
 

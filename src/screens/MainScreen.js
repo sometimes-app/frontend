@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Dimensions } from 'react-native';
-import useAuthentication from './useAuthentication';
-import { getMyStringValue, setStringValue, removeValue } from './utils/asyncStorage';
-import { FontAwesome5, Ionicons, Feather } from '@expo/vector-icons';
-import FadeInAnimatedText from './FadeInAnimatedText';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions } from 'react-native';
+import useAuthentication from '../utils/useAuthentication';
+import { getStringValue, setStringValue, removeValue } from '../utils/asyncStorage';
+import { FontAwesome5, Feather } from '@expo/vector-icons';
+import FadeInAnimatedText from '../components/FadeInAnimatedText';
 
 /** Screen where messages are seen. */
 const MainScreen = ( {navigation} ) => {
@@ -12,7 +12,7 @@ const MainScreen = ( {navigation} ) => {
   const { user } = useAuthentication();
 
   useEffect(()=>{
-    getMyStringValue('lastMessageTime')
+    getStringValue('lastMessageTime')
       .then(res => setLastMessageTime(res))
   },[])
 
@@ -28,7 +28,8 @@ const MainScreen = ( {navigation} ) => {
   }
 
   let buttonOrMessage;
-  if (lastMessageTime === undefined || (lastMessageTime > Math.floor(Date.now() / 1000) - 86400)) {
+  const twentyFourHoursAgo = Math.floor(Date.now() / 1000) - 86400
+  if (lastMessageTime === undefined || (lastMessageTime > twentyFourHoursAgo)) {
     buttonOrMessage = (
         <FadeInAnimatedText 
           text={'You can do it'} 
@@ -75,7 +76,6 @@ const MainScreen = ( {navigation} ) => {
       flex: 1,
       backgroundColor: 'black',
       alignItems: 'stretch',
-      // justifyContent: 'center',
     },
     profile: {
       alignSelf: 'flex-end',
@@ -101,8 +101,7 @@ const MainScreen = ( {navigation} ) => {
     },
     bottomButtons: {
       justifyContent: 'space-around',
-      flexDirection: 'row',
-      // backgroundColor: 'lightblue'
+      flexDirection: 'row'
     },
     previous: {
       marginBottom: 60,
