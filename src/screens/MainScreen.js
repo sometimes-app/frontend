@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions } from 'react-native';
 import useAuthentication from '../utils/useAuthentication';
 import { getStringValue, setStringValue, removeValue } from '../utils/asyncStorage';
-import { FontAwesome5, Feather } from '@expo/vector-icons';
+import { FontAwesome5, Feather, EvilIcons } from '@expo/vector-icons';
 import FadeInAnimatedText from '../components/FadeInAnimatedText';
+import RevealMessage from '../components/RevealMessage';
 
 /** Screen where messages are seen. */
 const MainScreen = ( {navigation} ) => {
@@ -41,9 +42,7 @@ const MainScreen = ( {navigation} ) => {
   } else {
     buttonOrMessage = (
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleMotivatedPress} style={styles.button}>
-          <Text>Get Motivated!</Text>
-        </TouchableOpacity>
+        <RevealMessage handlePress={handleMotivatedPress} />
       </View>
 
     )
@@ -59,8 +58,9 @@ const MainScreen = ( {navigation} ) => {
       />
       <View style={styles.bottomButtons}>
         <TouchableOpacity style={styles.previous} onPress={() => {}}>
+          <EvilIcons name='archive' color='black' size={32} /> 
           <Text style={styles.previousText}>
-            See Previous Messages
+            Message Archive
           </Text>
         </TouchableOpacity>
         <FontAwesome5 name="pen-fancy" size={32} color="white" onPress={() => {navigation.navigate('Friends')}} />
@@ -101,19 +101,22 @@ const MainScreen = ( {navigation} ) => {
     },
     bottomButtons: {
       justifyContent: 'space-around',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      marginBottom: 60,
     },
     previous: {
-      marginBottom: 60,
       backgroundColor: 'lemonchiffon',
-      padding: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
       borderRadius: 5,
-      flex: 1,
-      marginHorizontal: 20
-
+      display: 'flex',
+      flexDirection: 'row',
+      
+      
     },
     previousText: {
-      fontSize: 20
+      fontSize: 20,
+      marginLeft: 10
     }
   });
 
