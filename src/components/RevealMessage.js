@@ -7,8 +7,8 @@ const RevealMessage = ({ handlePress }) => {
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(scale, { toValue: 1.05, useNativeDriver: true, duration: 1500 }),
-        Animated.timing(scale, { toValue: 1, useNativeDriver: true, duration: 1500 }),
+        Animated.timing(scale, { toValue: 1.3, useNativeDriver: true, duration: 1000 }),
+        Animated.timing(scale, { toValue: 1, useNativeDriver: true, duration: 1000 }),
       ])
     ).start()
   }, [])

@@ -14,6 +14,7 @@ Splash Screen? https://docs.expo.dev/versions/latest/sdk/splash-screen/
 Asset Caching https://docs.expo.dev/archive/classic-updates/preloading-and-caching-assets/#pre-loading-and-caching-assets
 Fading text needs some help
 Error handling for async storage. Somehow display pop-up telling user to restart app or try again later.
+Move reused styles to one place e.g. background, container
 
 # Setup Explanation
 

@@ -12,9 +12,9 @@ const Logo = () => {
 const styles = StyleSheet.create({
   logo: {
     color: 'white',
-    marginTop: 40,
+    // marginTop: 40,
     fontSize: 30,
-    alignSelf: 'center'
+    // alignSelf: 'center'
   }
 })
 

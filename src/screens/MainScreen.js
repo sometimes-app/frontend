@@ -6,6 +6,7 @@ import { getStringValue, setStringValue, removeValue } from '../utils/asyncStora
 import { FontAwesome5, Feather, EvilIcons } from '@expo/vector-icons';
 import FadeInAnimatedText from '../components/FadeInAnimatedText';
 import RevealMessage from '../components/RevealMessage';
+import Header from '../components/Header';
 
 /** Screen where messages are seen. */
 const MainScreen = ( {navigation} ) => {
@@ -50,7 +51,7 @@ const MainScreen = ( {navigation} ) => {
 
   return (
     <View style={styles.page}>
-      <Feather style={styles.profile} name='user' size={32} color='white' onPress={() => {navigation.navigate('Profile')}} />
+      <Header navigation={navigation} showProfile={true}/>
       {buttonOrMessage}
       <Button 
         title='reset'
@@ -65,7 +66,7 @@ const MainScreen = ( {navigation} ) => {
         </TouchableOpacity>
         <FontAwesome5 name="pen-fancy" size={32} color="white" onPress={() => {navigation.navigate('Friends')}} />
       </View>
-      {/* <Ionicons name='ios-arrow-back-outline' size={32} color="white" /> */}
+      
       <StatusBar style="light" />
     </View>
   )
