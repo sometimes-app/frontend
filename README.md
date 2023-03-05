@@ -2,6 +2,19 @@
 
 https://www.npmjs.com/package/eslint-plugin-react-hooks
 
+# Tech Debt
+
+Decide on authentication, email and password should not be it.
+implement linter, eslint?
+move screens in folder
+2 tab instead of 4, no semi-colin, single quotes
+re-authentication if auth has expired. User should not have to log back in
+next message should probably be pulled from async storage when main page is opened -> useEffect with []
+Splash Screen? https://docs.expo.dev/versions/latest/sdk/splash-screen/
+Asset Caching https://docs.expo.dev/archive/classic-updates/preloading-and-caching-assets/#pre-loading-and-caching-assets
+Fading text needs some help
+Error handling for async storage. Somehow display pop-up telling user to restart app or try again later.
+
 # Setup Explanation
 
 https://www.reactnative.express/javascript
@@ -43,5 +56,32 @@ Cons: Need to Manually build authentication on server side
 Option 2: JWT?
 Not sure what this is yet
 
-Option 3: Firebase
+Option 3: Firebase by Google
+Pros: Somewhat plug and play
 
+Option 4: Auth0
+Pros: 
+
+# Authentication Decision
+
+I went with firebase. It is made by google and has a good free tier. There are lots of tutorials on how to set it up and the docs are decent. They also have options to connect just about any 3rd party auth. For now I went with username and email but we should setup something else. Maybe phone number (BeReal uses phone # and no password, just 2FA). 
+
+I followed these guides https://docs.expo.dev/guides/using-firebase/, https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
+used "npx expo install firebase"
+added the following packages: 
+"firebase": "^9.17.1"
+
+# Showing 1 message a day
+
+Option 1: Async storage
+On render async storage is checked for the last time a message was accessed. If it was accessed in the last 24 hours a request is made for the top message in the users 'revealed' stack and displays that. If not a 'show message' button is displayed.
+When show message is pressed an api call for the users next message in the message que is sent. The message is shown and the time is put into async storage.
+Pros: fast
+Cons: less secure
+
+Options 2: Keep everything server-side in a database
+Pro: Don't have to deal with local storage
+Con: Slower unless loaded on boot
+
+ON ASYNC-STORAGE BRANCH
+npx expo install @react-native-async-storage/async-storage

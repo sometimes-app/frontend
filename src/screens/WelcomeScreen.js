@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import FadeInAnimatedText from './FadeInAnimatedText';
+import FadeInAnimatedText from '../components/FadeInAnimatedText';
 
 /** Screen to pick a profile or create one. */
-const LoginScreen = ( {navigation} ) => {
+const WelcomeScreen = ( {navigation} ) => {
     return (
       <View style={styles.container}>
         <FadeInAnimatedText 
@@ -14,10 +14,10 @@ const LoginScreen = ( {navigation} ) => {
         >
         </FadeInAnimatedText>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('CreateP')}}>
+          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Register')}}>
             <Text>Create Profile</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Main')}}>
+          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Login')}}>
             <Text>Login</Text>
           </TouchableOpacity>
         </View>
@@ -47,4 +47,4 @@ const LoginScreen = ( {navigation} ) => {
     }
   });
 
-  export default LoginScreen
+  export default WelcomeScreen
