@@ -22,7 +22,7 @@ const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
     const styles = StyleSheet.create({
         text:{
             fontSize: textSize,
-            color: 'white'
+            color: 'lemonchiffon'
         },
       });
 
