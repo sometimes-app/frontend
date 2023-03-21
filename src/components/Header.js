@@ -6,11 +6,12 @@ const Header = ({ showBack, navigation, showProfile }) => {
   const styles = StyleSheet.create({
     header: {
       flexDirection: 'row',
-      marginTop: 40,
+      marginTop: 50,
       justifyContent: 'space-between',
     }
   })
 
+  // When reduce motion is on the screen flashes white and black on the back btn
   return (
     <View style={styles.header}>
         {showBack ? <Ionicons name='ios-arrow-back-outline' size={32} color="white" onPress={() => {navigation.goBack()}}/> : <Ionicons name='ios-arrow-back-outline' size={32} color="black" />}

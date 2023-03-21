@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, FlatList, TextInput, TouchableHighlight, Dimensions, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TextInput, TouchableHighlight, Dimensions, TouchableOpacity, Keyboard } from 'react-native';
 import { useState } from 'react';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { friends } from '../mockData'
+import { globalStyle, colors } from '../styles/styles';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Header from '../components/Header';
 
 
@@ -18,7 +19,7 @@ const FriendsScreen = ( {navigation} ) => {
     return (
       <TouchableOpacity onPress={onPress} style={styles.rightAction}>
         <View>
-          <Text style={{color:'white', fontWeight: '500'}}>
+          <Text style={{color: colors.accentColor, fontWeight: '500'}}>
             Remove Friend
           </Text>
         </View>
@@ -27,8 +28,8 @@ const FriendsScreen = ( {navigation} ) => {
   }
 
   return (
-    <View style={styles.background}>
-      <View style={styles.container}>
+    <View style={globalStyle.background}>
+      <View style={globalStyle.container}>
         <Header showBack={true} navigation={navigation} showProfile={true}/>
         <TextInput
           style={styles.searchBar}
@@ -37,7 +38,7 @@ const FriendsScreen = ( {navigation} ) => {
           onChangeText={handleSearch}
           placeholderTextColor='rgba(255,255,255,.8)'
         />
-        <Text style={{color: 'white', marginTop: 15}}>
+        <Text style={{color: colors.accentColor, marginTop: 15}}>
           MY FRIENDS ({friends.length})
         </Text>
         <View style={styles.listContainer}>
@@ -47,7 +48,7 @@ const FriendsScreen = ( {navigation} ) => {
             keyboardShouldPersistTaps = 'handled'
             keyExtractor={(friend) => friend.id.toString()}
             renderItem={({ item }) => (
-              <Swipeable renderRightActions={() => <RightActions onPress={() => console.log('delete', item)}/>} style={styles.swipe}>
+              <Swipeable renderRightActions={() => <RightActions onPress={() => console.log('delete', item)}/>}>
                 <TouchableHighlight style={styles.friendTile} onPress={() => {navigation.navigate('CreateM', {ReceiverId: item.id})}} underlayColor='rgb(50,50,50)' activeOpacity={.1}>
                   <>
                     <View style={styles.initialsContainer}>
@@ -70,14 +71,6 @@ const FriendsScreen = ( {navigation} ) => {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  container: {
-    flex: 1,
-    marginHorizontal: 10,
-  },
   searchBar: {
     height: 50,
     width: '100%',
@@ -85,16 +78,14 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     marginVertical: 20,
     fontSize: 20,
-    color: 'white',
+    color: colors.accentColor,
     backgroundColor: 'rgba(255,255,255,0.15)',
     alignSelf:'center'
   },
   friendName: {
-    // borderColor: 'blue',
-    // borderWidth: 1,
     fontSize: 16,
     fontWeight: '600',
-    color: 'white'
+    color: colors.accentColor
   },
   listContainer: {
   },
@@ -102,25 +93,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    // borderColor: 'blue',
     marginVertical: 10,
-    // borderWidth: 1,
     backgroundColor: '#000'
-  },
-  swipe: {
   },
   initials: {
     fontSize: 24
   },
   initialsContainer: {
     borderRadius: 50,
-    backgroundColor: 'lemonchiffon',
+    backgroundColor: colors.primaryColor,
     height: Dimensions.get('window').height * .08,
     width: Dimensions.get('window').height * .08,
     alignItems: 'center',
     justifyContent: 'center',
-    // borderColor: 'red',
-    // borderWidth: 1
   },
   username: {
     color: 'rgba(255, 255, 255, 0.75)',

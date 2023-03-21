@@ -7,6 +7,7 @@ import { FontAwesome5, Feather, EvilIcons } from '@expo/vector-icons';
 import FadeInAnimatedText from '../components/FadeInAnimatedText';
 import RevealMessage from '../components/RevealMessage';
 import Header from '../components/Header';
+import { globalStyle, colors } from '../styles/styles';
 
 /** Screen where messages are seen. */
 const MainScreen = ( {navigation} ) => {
@@ -45,39 +46,34 @@ const MainScreen = ( {navigation} ) => {
       <View style={styles.buttonContainer}>
         <RevealMessage handlePress={handleMotivatedPress} />
       </View>
-
     )
   }
 
   return (
-    <View style={styles.page}>
-      <Header navigation={navigation} showProfile={true}/>
-      {buttonOrMessage}
-      <Button 
-        title='reset'
-        onPress={() => {handleReset()}}
-      />
-      <View style={styles.bottomButtons}>
-        <TouchableOpacity style={styles.previous} onPress={() => {}}>
-          <EvilIcons name='archive' color='black' size={32} /> 
-          <Text style={styles.previousText}>
-            Message Archive
-          </Text>
-        </TouchableOpacity>
-        <FontAwesome5 name="pen-fancy" size={32} color="white" onPress={() => {navigation.navigate('Friends')}} />
+    <View style={globalStyle.background}>
+      <View style={globalStyle.container}>
+        <Header navigation={navigation} showProfile={true}/>
+        {buttonOrMessage}
+        <Button 
+          title='reset'
+          onPress={() => {handleReset()}}
+          />
+        <View style={styles.bottomButtons}>
+          <TouchableOpacity style={styles.previous} onPress={() => {}}>
+            <EvilIcons name='archive' color='black' size={32} /> 
+            <Text style={styles.previousText}>
+              Message Archive
+            </Text>
+          </TouchableOpacity>
+          <FontAwesome5 name="pen-fancy" size={32} color="white" onPress={() => {navigation.navigate('Friends')}} />
+        </View>
+        <StatusBar style="light" />
       </View>
-      
-      <StatusBar style="light" />
     </View>
   )
 }
 
   const styles = StyleSheet.create({
-    page: {
-      flex: 1,
-      backgroundColor: 'black',
-      alignItems: 'stretch',
-    },
     profile: {
       alignSelf: 'flex-end',
       paddingRight: 25,
@@ -90,7 +86,7 @@ const MainScreen = ( {navigation} ) => {
       justifyContent: 'center'
     },
     button: {
-      backgroundColor: 'lemonchiffon',
+      backgroundColor: colors.primaryColor,
       height: Dimensions.get('window').height * .2,
       width: Dimensions.get('window').height * .2,
       alignItems: 'center',
@@ -106,14 +102,12 @@ const MainScreen = ( {navigation} ) => {
       marginBottom: 60,
     },
     previous: {
-      backgroundColor: 'lemonchiffon',
+      backgroundColor: colors.primaryColor,
       paddingVertical: 10,
       paddingHorizontal: 20,
       borderRadius: 5,
       display: 'flex',
       flexDirection: 'row',
-      
-      
     },
     previousText: {
       fontSize: 20,

@@ -4,14 +4,14 @@ import { authentication } from '../../firebaseConfig';
 import { signOut } from "firebase/auth"
 import useAuthentication from '../utils/useAuthentication';
 import Header from '../components/Header';
-
+import { globalStyle, colors } from '../styles/styles';
 
 /** Screen where the profile can be viewed. */
 const ProfileScreen = ( {navigation} ) => {
   const { user } = useAuthentication();
   return (
-    <View style={styles.background}>
-      <View style={styles.container}>
+    <View style={globalStyle.background}>
+      <View style={globalStyle.container}>
         <Header navigation={navigation} showBack={true}/>
         <View style={styles.profilePhoto}>
           <Text style={styles.initials}>
@@ -24,7 +24,7 @@ const ProfileScreen = ( {navigation} ) => {
         <Text style={styles.username} >
           john321
         </Text>
-        <TouchableOpacity style={styles.signOut}>
+        <TouchableOpacity style={styles.signOut} onPress={() => signOut(authentication)} >
           <Text style={styles.signOutText}>
             Sign Out
           </Text>
@@ -34,24 +34,15 @@ const ProfileScreen = ( {navigation} ) => {
       <Button
         title="Async Demo"
         onPress={() => {navigation.navigate('AsyncDemo')}}
-      />
-      <Button title="Sign Out" onPress={() => signOut(authentication)} /> */}
+      /> */}
       <StatusBar style="light" />
     </View>
   )
   }
 
   const styles = StyleSheet.create({
-    background: {
-      backgroundColor: 'black',
-      flex: 1,
-    },
-    container: {
-      flex: 1,
-      marginHorizontal: 10
-    },
     profilePhoto: {
-      backgroundColor: 'lemonchiffon',
+      backgroundColor: colors.primaryColor,
       height: Dimensions.get('window').width * .4,
       width: Dimensions.get('window').width * .4,
       alignSelf: 'center',
@@ -64,19 +55,19 @@ const ProfileScreen = ( {navigation} ) => {
       alignSelf: 'center'
     },
     name: {
-      color: 'white',
+      color: colors.accentColor,
       alignSelf: 'center',
       paddingTop: 20,
       fontSize: 30,
       fontWeight: 'bold'
     },
     username: {
-      color: 'white',
+      color: colors.accentColor,
       alignSelf: 'center',
       paddingTop: 5,
     },
     signOut: {
-      backgroundColor: 'lemonchiffon',
+      backgroundColor: colors.primaryColor,
       alignSelf: 'center',
       padding: 10,
       borderRadius: 5,
