@@ -74,32 +74,15 @@ const MainScreen = ( {navigation} ) => {
 }
 
   const styles = StyleSheet.create({
-    profile: {
-      alignSelf: 'flex-end',
-      paddingRight: 25,
-      paddingTop: 40
-
-    },
     buttonContainer: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center'
     },
-    button: {
-      backgroundColor: colors.primaryColor,
-      height: Dimensions.get('window').height * .2,
-      width: Dimensions.get('window').height * .2,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 100
-    },
-    messageContainer: {
-      flex: 1,
-    },
     bottomButtons: {
       justifyContent: 'space-around',
       flexDirection: 'row',
-      marginBottom: 60,
+      marginBottom: 20,
     },
     previous: {
       backgroundColor: colors.primaryColor,
