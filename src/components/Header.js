@@ -1,24 +1,53 @@
-import { StyleSheet, View } from 'react-native'
-import { Ionicons, Feather } from '@expo/vector-icons'
-import Logo from '../components/Logo'
+import { StyleSheet, View } from "react-native";
+import { Ionicons, Feather } from "@expo/vector-icons";
+import Logo from "../components/Logo";
 
 const Header = ({ showBack, navigation, showProfile }) => {
   const styles = StyleSheet.create({
     header: {
-      flexDirection: 'row',
+      flexDirection: "row",
       marginTop: 50,
-      justifyContent: 'space-between',
-    }
-  })
+      justifyContent: "space-between",
+    },
+  });
 
   // When reduce motion is on the screen flashes white and black on the back btn
   return (
     <View style={styles.header}>
-        {showBack ? <Ionicons name='ios-arrow-back-outline' size={32} color="white" onPress={() => {navigation.goBack()}}/> : <Ionicons name='ios-arrow-back-outline' size={32} color="black" />}
-        <Logo />
-        {showProfile ? <Feather name='user' size={32} color='white' onPress={() => {navigation.navigate('Profile')}} /> : <Feather name='user' size={32} color='black' onPress={() => {navigation.navigate('Profile')}} />}
-      </View>
-  )
-}
+      {showBack ? (
+        <Ionicons
+          name="ios-arrow-back-outline"
+          size={32}
+          color="white"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
+      ) : (
+        <Ionicons name="ios-arrow-back-outline" size={32} color="black" />
+      )}
+      <Logo />
+      {showProfile ? (
+        <Feather
+          name="user"
+          size={32}
+          color="white"
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        />
+      ) : (
+        <Feather
+          name="user"
+          size={32}
+          color="black"
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        />
+      )}
+    </View>
+  );
+};
 
-export default Header
+export default Header;
