@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginVertical: 10,
-    backgroundColor: '#000'
+    backgroundColor: colors.backgroundColor,
   },
   initials: {
     fontSize: 24
