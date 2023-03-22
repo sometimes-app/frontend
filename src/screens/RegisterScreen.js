@@ -35,7 +35,7 @@ const RegisterScreen = ({ navigation }) => {
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
-          placeholderTextColor='gray'
+          placeholderTextColor={colors.placeholderColor}
         />
         <TextInput
           style={styles.password}
@@ -43,7 +43,7 @@ const RegisterScreen = ({ navigation }) => {
           value={password}
           secureTextEntry={true}
           onChangeText={setPassword}
-          placeholderTextColor='gray'
+          placeholderTextColor={colors.placeholderColor}
         />
         <TouchableOpacity
           style={styles.signUp}

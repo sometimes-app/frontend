@@ -31,7 +31,7 @@ const ForgotScreen = ({ navigation }) => {
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
-          placeholderTextColor='gray'
+          placeholderTextColor={colors.placeholderColor}
         />
         <TouchableOpacity
           style={styles.signIn}
