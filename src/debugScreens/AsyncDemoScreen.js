@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 import {
   setStringValue,
   getStringValue,
   getAllKeys,
   removeValue,
   clearAll,
-} from './../utils/asyncStorage';
+} from "./../utils/asyncStorage";
 
 /** Async Demo Screen. */
 const CreateMScreen = () => {
@@ -108,12 +108,12 @@ const CreateMScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
   touch: {
-    backgroundColor: 'lightpink',
+    backgroundColor: "lightpink",
     padding: 15,
   },
 });

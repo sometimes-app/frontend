@@ -1,16 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableOpacity,
-} from 'react-native';
-import { authentication } from '../../firebaseConfig';
-import { signOut } from 'firebase/auth';
-import useAuthentication from '../utils/useAuthentication';
-import Header from '../components/Header';
-import { globalStyle, colors } from '../styles/styles';
+} from "react-native";
+import { authentication } from "../../firebaseConfig";
+import { signOut } from "firebase/auth";
+import useAuthentication from "../utils/useAuthentication";
+import Header from "../components/Header";
+import { globalStyle, colors } from "../styles/styles";
 
 /** Screen where the profile can be viewed. */
 const ProfileScreen = ({ navigation }) => {
@@ -44,32 +44,32 @@ const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   profilePhoto: {
     backgroundColor: colors.primaryColor,
-    height: Dimensions.get('window').width * 0.4,
-    width: Dimensions.get('window').width * 0.4,
-    alignSelf: 'center',
+    height: Dimensions.get("window").width * 0.4,
+    width: Dimensions.get("window").width * 0.4,
+    alignSelf: "center",
     borderRadius: 100,
     marginTop: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   initials: {
     fontSize: 60,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   name: {
     color: colors.accentColor,
-    alignSelf: 'center',
+    alignSelf: "center",
     paddingTop: 20,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   username: {
     color: colors.accentColor,
-    alignSelf: 'center',
+    alignSelf: "center",
     paddingTop: 5,
   },
   signOut: {
     backgroundColor: colors.primaryColor,
-    alignSelf: 'center',
+    alignSelf: "center",
     padding: 10,
     borderRadius: 5,
     margin: 10,

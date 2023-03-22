@@ -1,7 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import FadeInAnimatedText from '../components/FadeInAnimatedText';
-import { globalStyle } from '../styles/styles';
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import FadeInAnimatedText from '../components/FadeInAnimatedText'
+import { globalStyle } from '../styles/styles'
 
 /** Screen to pick a profile or create one. */
 const WelcomeScreen = ({ navigation }) => {
@@ -18,7 +18,7 @@ const WelcomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Register');
+              navigation.navigate('Register')
             }}
           >
             <Text>Create Profile</Text>
@@ -26,7 +26,7 @@ const WelcomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Login');
+              navigation.navigate('Login')
             }}
           >
             <Text>Login</Text>
@@ -35,8 +35,8 @@ const WelcomeScreen = ({ navigation }) => {
         <StatusBar style="light" />
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
     minWidth: 150,
     alignItems: 'center',
   },
-});
+})
 
-export default WelcomeScreen;
+export default WelcomeScreen

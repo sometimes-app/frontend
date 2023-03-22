@@ -1,14 +1,14 @@
-import { StyleSheet, View } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import Logo from '../components/Logo';
-import PropTypes from 'prop-types';
+import { StyleSheet, View } from "react-native";
+import { Ionicons, Feather } from "@expo/vector-icons";
+import Logo from "../components/Logo";
+import PropTypes from "prop-types";
 
 const Header = ({ showBack, navigation, showProfile }) => {
   const styles = StyleSheet.create({
     header: {
-      flexDirection: 'row',
+      flexDirection: "row",
       marginTop: 50,
-      justifyContent: 'space-between',
+      justifyContent: "space-between",
     },
   });
 
@@ -34,7 +34,7 @@ const Header = ({ showBack, navigation, showProfile }) => {
           size={32}
           color="white"
           onPress={() => {
-            navigation.navigate('Profile');
+            navigation.navigate("Profile");
           }}
         />
       ) : (
@@ -43,7 +43,7 @@ const Header = ({ showBack, navigation, showProfile }) => {
           size={32}
           color="black"
           onPress={() => {
-            navigation.navigate('Profile');
+            navigation.navigate("Profile");
           }}
         />
       )}

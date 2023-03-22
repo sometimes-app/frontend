@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState, useEffect, useRef } from 'react';
+import { StatusBar } from "expo-status-bar";
+import { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,12 +9,12 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Pressable,
-} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { suggestedMessages } from '../mockData';
-import Header from '../components/Header';
-import { globalStyle, colors } from '../styles/styles';
-import PropTypes from 'prop-types';
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { suggestedMessages } from "../mockData";
+import Header from "../components/Header";
+import { globalStyle, colors } from "../styles/styles";
+import PropTypes from "prop-types";
 
 /**
  * @summary
@@ -24,7 +24,7 @@ import PropTypes from 'prop-types';
 const CreateMScreen = ({ navigation, route }) => {
   const { ReceiverId } = route.params;
   const inputRef = useRef();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -33,16 +33,16 @@ const CreateMScreen = ({ navigation, route }) => {
     }, 550);
   }, []);
 
-  Keyboard.addListener('keyboardDidHide', () => {
+  Keyboard.addListener("keyboardDidHide", () => {
     setKeyboardVisible(false);
   });
 
-  Keyboard.addListener('keyboardDidShow', () => {
+  Keyboard.addListener("keyboardDidShow", () => {
     setKeyboardVisible(true);
   });
 
   const handleSend = () => {
-    navigation.navigate('Main');
+    navigation.navigate("Main");
     console.log(ReceiverId);
     console.log(navigation);
   };
@@ -71,9 +71,9 @@ const CreateMScreen = ({ navigation, route }) => {
             onChangeText={setMessage}
             ref={inputRef}
             value={message}
-            placeholder={'Type your message here'}
+            placeholder={"Type your message here"}
             style={styles.message}
-            keyboardAppearance={'dark'}
+            keyboardAppearance={"dark"}
             multiline={true}
           />
           <View style={styles.buttons}>
@@ -85,7 +85,7 @@ const CreateMScreen = ({ navigation, route }) => {
             </TouchableOpacity>
             <FontAwesome
               name="send"
-              color={'white'}
+              color={"white"}
               size={22}
               style={
                 message.length != 0 ? styles.sendActive : styles.sendDisabled
@@ -127,15 +127,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   sendActive: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginRight: 10,
   },
   sendDisabled: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginRight: 10,
     opacity: 0.2,
   },

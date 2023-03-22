@@ -5,5 +5,6 @@
     "source.formatDocument": true, // this is exposed by rohit-gohri.format-code-action
     "source.fixAll.eslint": true // this is exposed by dbaeumer.vscode-eslint
   },
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.semi": false
 }
