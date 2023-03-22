@@ -1,17 +1,16 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import FadeInAnimatedText from "../components/FadeInAnimatedText";
-import { globalStyle } from "../styles/styles";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import FadeInAnimatedText from '../components/FadeInAnimatedText';
+import { globalStyle } from '../styles/styles';
+import { NavigationType } from '../propTypes';
 
 /** Screen to pick a profile or create one. */
 const WelcomeScreen = ({ navigation }) => {
-  const x = 0;
-
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <FadeInAnimatedText
-          text={"Sometimes"}
+          text={'Sometimes'}
           byChar={false}
           duration={1000}
           textSize={32}
@@ -20,7 +19,7 @@ const WelcomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate("Register");
+              navigation.navigate('Register');
             }}
           >
             <Text>Create Profile</Text>
@@ -28,7 +27,7 @@ const WelcomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate("Login");
+              navigation.navigate('Login');
             }}
           >
             <Text>Login</Text>
@@ -42,19 +41,23 @@ const WelcomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     marginBottom: 30,
   },
   button: {
-    display: "flex",
+    display: 'flex',
     padding: 10,
     margin: 5,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 15,
     minWidth: 150,
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
+
+WelcomeScreen.propTypes = {
+  navigation: NavigationType,
+};
 
 export default WelcomeScreen;

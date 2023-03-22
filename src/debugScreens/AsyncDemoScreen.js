@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 import {
   setStringValue,
   getStringValue,
   getAllKeys,
   removeValue,
   clearAll,
-} from "./../utils/asyncStorage";
+} from './../utils/asyncStorage';
 
 /** Async Demo Screen. */
 const CreateMScreen = () => {
@@ -24,10 +24,10 @@ const CreateMScreen = () => {
   const [result2, setResult2] = useState();
   const [remove, setRemove] = useState();
 
-  const debug = () => {
-    console.log("k", k, "v", v, "search", search, "result", result);
-    getAllKeys();
-  };
+  // const debug = () => {
+  //   console.log("k", k, "v", v, "search", search, "result", result);
+  //   getAllKeys();
+  // };
 
   const handleSearch = () => {
     getStringValue(search).then((res) => setResult2(res));
@@ -108,12 +108,12 @@ const CreateMScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "space-evenly",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   touch: {
-    backgroundColor: "lightpink",
+    backgroundColor: 'lightpink',
     padding: 15,
   },
 });

@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../../firebaseConfig";
-import { colors, globalStyle } from "../styles/styles";
-import Header from "../components/Header";
+} from 'react-native';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { authentication } from '../../firebaseConfig';
+import { colors, globalStyle } from '../styles/styles';
+import Header from '../components/Header';
+import { NavigationPropType } from '../propTypes';
 
 /** Register Screen */
 const RegisterScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password).catch(
@@ -53,7 +53,7 @@ const RegisterScreen = ({ navigation }) => {
               RegisterUser();
             }}
           >
-            <Text style={{ fontWeight: "bold" }}>Sign Up</Text>
+            <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
           </TouchableOpacity>
         </View>
         <StatusBar style="light" />
@@ -69,37 +69,41 @@ const styles = StyleSheet.create({
   createText: {
     color: colors.accentColor,
     fontSize: 30,
-    fontWeight: "bold",
-    marginHorizontal: "5%",
-    marginTop: "5%",
+    fontWeight: 'bold',
+    marginHorizontal: '5%',
+    marginTop: '5%',
   },
   email: {
     color: colors.accentColor,
     fontSize: 18,
-    marginHorizontal: "5%",
-    marginTop: "10%",
-    paddingBottom: "2%",
-    borderBottomColor: "rgba(255,255,255,.25)",
+    marginHorizontal: '5%',
+    marginTop: '10%',
+    paddingBottom: '2%',
+    borderBottomColor: 'rgba(255,255,255,.25)',
     borderBottomWidth: 1,
   },
   password: {
     color: colors.accentColor,
     fontSize: 18,
-    marginHorizontal: "5%",
-    marginTop: "10%",
-    paddingBottom: "2%",
-    borderBottomColor: "rgba(255,255,255,.25)",
+    marginHorizontal: '5%',
+    marginTop: '10%',
+    paddingBottom: '2%',
+    borderBottomColor: 'rgba(255,255,255,.25)',
     borderBottomWidth: 1,
   },
   signUp: {
-    display: "flex",
-    alignItems: "center",
-    marginTop: "10%",
-    marginHorizontal: "5%",
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '10%',
+    marginHorizontal: '5%',
     backgroundColor: colors.primaryColor,
     borderRadius: 25,
-    padding: "4%",
+    padding: '4%',
   },
 });
+
+RegisterScreen.propTypes = {
+  navigation: NavigationPropType,
+};
 
 export default RegisterScreen;

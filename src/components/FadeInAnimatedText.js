@@ -1,6 +1,7 @@
-import { Animated, Text, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useEffect, useRef } from "react";
+import { Animated, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Helper for animated text component to individual animate a character or word in a series
@@ -22,7 +23,7 @@ const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
   const styles = StyleSheet.create({
     text: {
       fontSize: textSize,
-      color: "lemonchiffon",
+      color: 'lemonchiffon',
     },
   });
 
@@ -56,9 +57,9 @@ const FadeInAnimatedText = ({ text, byChar, textSize, duration }) => {
   const splitText = (textToSplit, byChar) => {
     let textArray = [];
     if (byChar) {
-      textArray = textToSplit.split("");
+      textArray = textToSplit.split('');
     } else {
-      textArray = textToSplit.split(" ");
+      textArray = textToSplit.split(' ');
     }
     return textArray;
   };
@@ -85,10 +86,17 @@ const FadeInAnimatedText = ({ text, byChar, textSize, duration }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
 });
+
+FadeInAnimatedText.propTypes = {
+  text: PropTypes.string.isRequired,
+  byChar: PropTypes.bool.isRequired,
+  textSize: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+};
 
 export default FadeInAnimatedText;

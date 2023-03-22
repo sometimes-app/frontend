@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function getStringValue(key) {
   try {
@@ -18,7 +18,6 @@ export async function setStringValue(key, value) {
 }
 
 export async function getAllKeys() {
-  let keys = [];
   try {
     return await AsyncStorage.getAllKeys();
   } catch (e) {
