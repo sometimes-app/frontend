@@ -10,6 +10,7 @@ export const colors = {
   primaryColor: 'lemonchiffon',
   accentColor: 'white',
   backgroundColor: 'black',
+  placeholderColor: 'gray',
 }
 
 export const globalStyle = StyleSheet.create({
