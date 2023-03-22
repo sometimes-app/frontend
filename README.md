@@ -51,7 +51,7 @@ Option 1: React Navigation Authentication Flow
 https://reactnavigation.org/docs/auth-flow/
 
 Pros: We are already using React Navigation so integration is straight forward
-      No external dependencies
+No external dependencies
 Cons: Need to Manually build authentication on server side
 
 Option 2: JWT?
@@ -61,15 +61,15 @@ Option 3: Firebase by Google
 Pros: Somewhat plug and play
 
 Option 4: Auth0
-Pros: 
+Pros:
 
 # Authentication Decision
 
-I went with firebase. It is made by google and has a good free tier. There are lots of tutorials on how to set it up and the docs are decent. They also have options to connect just about any 3rd party auth. For now I went with username and email but we should setup something else. Maybe phone number (BeReal uses phone # and no password, just 2FA). 
+I went with firebase. It is made by google and has a good free tier. There are lots of tutorials on how to set it up and the docs are decent. They also have options to connect just about any 3rd party auth. For now I went with username and email but we should setup something else. Maybe phone number (BeReal uses phone # and no password, just 2FA).
 
 I followed these guides https://docs.expo.dev/guides/using-firebase/, https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
 used "npx expo install firebase"
-added the following packages: 
+added the following packages:
 "firebase": "^9.17.1"
 
 # Showing 1 message a day

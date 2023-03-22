@@ -11,34 +11,35 @@ import ForgotScreen from './src/screens/ForgotPScreen'
 import useAuthentication from './src/utils/useAuthentication'
 import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
 
-
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
-  const { user } = useAuthentication();
+  const { user } = useAuthentication()
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         {user ? (
           <>
-            <Stack.Screen name='Main' component={MainScreen} />
-            <Stack.Screen name='Friends' component={FriendsScreen} />
-            <Stack.Screen name='CreateM' component={CreateMScreen} />
-            <Stack.Screen name='Profile' component={ProfileScreen} />
-            <Stack.Screen name='AsyncDemo' component={AsyncDemoScreen} />
+            <Stack.Screen name="Main" component={MainScreen} />
+            <Stack.Screen name="Friends" component={FriendsScreen} />
+            <Stack.Screen name="CreateM" component={CreateMScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="AsyncDemo" component={AsyncDemoScreen} />
           </>
         ) : (
           <>
-            <Stack.Screen name='Welcome' component={WelcomeScreen} />
-            <Stack.Screen name='Login' component={LoginScreen} />
-            <Stack.Screen name='Register' component={RegisterScreen} />
-            <Stack.Screen name='Forgot' component={ForgotScreen} />
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Forgot" component={ForgotScreen} />
           </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
