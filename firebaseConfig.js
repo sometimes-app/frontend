@@ -14,10 +14,10 @@ const firebaseConfig = {
   storageBucket: "sometimes-f29fb.appspot.com",
   messagingSenderId: "432607254148",
   appId: "1:432607254148:web:23a1ba0aef042704dc14d1",
-  measurementId: "G-91R96GHZBT"
+  measurementId: "G-91R96GHZBT",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-export const authentication = getAuth(app)
+export const authentication = getAuth(app);

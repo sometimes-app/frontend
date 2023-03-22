@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 /**
  * @summary
@@ -7,18 +7,18 @@ import { StyleSheet } from 'react-native';
  * @param primaryColor lemonchiffon
  */
 export const colors = {
-    primaryColor: 'lemonchiffon',
-    accentColor: 'white',
-    backgroundColor: 'black'
+  primaryColor: 'lemonchiffon',
+  accentColor: 'white',
+  backgroundColor: 'black',
 }
 
 export const globalStyle = StyleSheet.create({
-    background: {
-        flex: 1,
-        backgroundColor: colors.backgroundColor,
-      },
-      container: {
-        flex: 1,
-        marginHorizontal: 10
-      }
-});
+  background: {
+    flex: 1,
+    backgroundColor: colors.backgroundColor,
+  },
+  container: {
+    flex: 1,
+    marginHorizontal: 10,
+  },
+})
