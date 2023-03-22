@@ -7,8 +7,10 @@ import FriendsScreen from './src/screens/FriendsScreen'
 import ProfileScreen from './src/screens/ProfileScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import WelcomeScreen from './src/screens/WelcomeScreen'
+import ForgotScreen from './src/screens/ForgotPScreen'
 import useAuthentication from './src/utils/useAuthentication'
 import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +35,7 @@ export default function App() {
             <Stack.Screen name='Welcome' component={WelcomeScreen} />
             <Stack.Screen name='Login' component={LoginScreen} />
             <Stack.Screen name='Register' component={RegisterScreen} />
+            <Stack.Screen name='Forgot' component={ForgotScreen} />
           </>
         )}
       </Stack.Navigator>

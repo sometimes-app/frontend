@@ -23,14 +23,12 @@ const RegisterScreen = ( {navigation} ) => {
       <View style={globalStyle.background}>
         <View style={globalStyle.container}>
           <Header showBack={true} navigation={navigation} showProfile={false}/>
-            <View style={styles.container}>
-              <Text style={styles.createText}>Create an account</Text>
-              <TextInput style={styles.email} placeholder='Email' value={email} onChangeText={setEmail} placeholderTextColor='gray'/>
-              <TextInput style={styles.password} placeholder='Password' value={password} secureTextEntry={true} onChangeText={setPassword} placeholderTextColor='gray'/>
-              <TouchableOpacity style={styles.signUp} onPress={()=>{RegisterUser()}}>
-                <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
+          <Text style={styles.titleText}>Create an account</Text>
+          <TextInput style={styles.email} placeholder='Email' value={email} onChangeText={setEmail} placeholderTextColor='gray'/>
+          <TextInput style={styles.password} placeholder='Password' value={password} secureTextEntry={true} onChangeText={setPassword} placeholderTextColor='gray'/>
+          <TouchableOpacity style={styles.signUp} onPress={()=>{RegisterUser()}}>
+            <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
+          </TouchableOpacity>
           <StatusBar style="light" />
         </View>
       </View>
@@ -38,12 +36,7 @@ const RegisterScreen = ( {navigation} ) => {
   }
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      // maxHeight: '50%',
-      // backgroundColor: 'navy',
-    },
-    createText: {
+    titleText: {
       color: colors.accentColor,
       fontSize: 30,
       fontWeight: 'bold',

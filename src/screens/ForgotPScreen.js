@@ -1,17 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { sendPasswordResetEmail } from "firebase/auth"
 import { authentication } from '../../firebaseConfig'
 import { globalStyle, colors } from '../styles/styles'; 
 import Header from '../components/Header';
 
-const LoginScreen = ( {navigation} ) => {
+const ForgotScreen = ( {navigation} ) => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
   const SignInUser = () => {
-    signInWithEmailAndPassword(authentication, email, password)
+    sendPasswordResetEmail(authentication, email)
       .catch(err => {
         console.log(err)
       })
@@ -21,14 +20,10 @@ const LoginScreen = ( {navigation} ) => {
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <Header showBack={true} navigation={navigation} showProfile={false}/>
-        <Text style={styles.titleText}>Login</Text>
+        <Text style={styles.titleText}>Reset Password</Text>
         <TextInput style={styles.email} placeholder='Email' value={email} onChangeText={setEmail} placeholderTextColor='gray'/>
-        <TextInput style={styles.password} placeholder='Password' value={password} secureTextEntry={true} onChangeText={setPassword} placeholderTextColor='gray'/>
         <TouchableOpacity style={styles.signIn} onPress={()=>{SignInUser()}}>
-            <Text style={{ fontWeight: 'bold' }}>Sign In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.forgot} onPress={()=>{navigation.navigate('Forgot')}}>
-          <Text style={styles.forgotText}>Forgot password?</Text>
+            <Text style={{ fontWeight: 'bold' }}>Reset</Text>
         </TouchableOpacity>
       </View>
       <StatusBar style='light'/>
@@ -53,15 +48,6 @@ const styles = StyleSheet.create({
       borderBottomColor: 'rgba(255,255,255,.25)',
       borderBottomWidth: 1,
     },
-    password: {
-      color: colors.accentColor,
-      fontSize: 18,
-      marginHorizontal: '5%',
-      marginTop: '10%',
-      paddingBottom: '2%',
-      borderBottomColor: 'rgba(255,255,255,.25)',
-      borderBottomWidth: 1,
-    },
     signIn: {
       display: 'flex',
       alignItems: 'center',
@@ -71,16 +57,6 @@ const styles = StyleSheet.create({
       borderRadius: 25,
       padding: '4%'
     },
-    forgot: {
-      padding: '2%',
-      marginTop: '3%',
-      alignSelf: 'center'
-    },
-    forgotText: {
-      color: colors.accentColor,
-      fontWeight: 'bold',
-      textDecorationLine: 'underline',
-    }
 })
 
-export default LoginScreen
+export default ForgotScreen
