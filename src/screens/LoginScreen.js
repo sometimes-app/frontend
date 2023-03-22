@@ -29,18 +29,18 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.titleText}>Login</Text>
         <TextInput
           style={styles.email}
-          placeholder="Email"
+          placeholder='Email'
           value={email}
           onChangeText={setEmail}
-          placeholderTextColor="gray"
+          placeholderTextColor='gray'
         />
         <TextInput
           style={styles.password}
-          placeholder="Password"
+          placeholder='Password'
           value={password}
           secureTextEntry={true}
           onChangeText={setPassword}
-          placeholderTextColor="gray"
+          placeholderTextColor='gray'
         />
         <TouchableOpacity
           style={styles.signIn}
@@ -59,7 +59,7 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.forgotText}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar style="light" />
+      <StatusBar style='light' />
     </View>
   )
 }
