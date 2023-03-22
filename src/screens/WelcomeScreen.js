@@ -5,6 +5,8 @@ import { globalStyle } from "../styles/styles";
 
 /** Screen to pick a profile or create one. */
 const WelcomeScreen = ({ navigation }) => {
+  const x = 0;
+
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
