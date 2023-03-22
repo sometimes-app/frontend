@@ -1,24 +1,24 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from 'expo-status-bar'
 import {
   View,
   TextInput,
   StyleSheet,
   TouchableOpacity,
   Text,
-} from "react-native";
-import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../../firebaseConfig";
+} from 'react-native'
+import React, { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { authentication } from '../../firebaseConfig'
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const SignInUser = () => {
     signInWithEmailAndPassword(authentication, email, password).catch((err) => {
-      console.log(err);
-    });
-  };
+      console.log(err)
+    })
+  }
 
   return (
     <>
@@ -32,7 +32,7 @@ const LoginScreen = () => {
         />
         <TouchableOpacity
           onPress={() => {
-            SignInUser();
+            SignInUser()
           }}
         >
           <Text>Sign In</Text>
@@ -40,15 +40,15 @@ const LoginScreen = () => {
       </View>
       <StatusBar style="auto" />
     </>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-});
+})
 
-export default LoginScreen;
+export default LoginScreen

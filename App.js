@@ -1,19 +1,19 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MainScreen from "./src/screens/MainScreen";
-import RegisterScreen from "./src/screens/RegisterScreen";
-import CreateMScreen from "./src/screens/CreateMScreen";
-import FriendsScreen from "./src/screens/FriendsScreen";
-import ProfileScreen from "./src/screens/ProfileScreen";
-import LoginScreen from "./src/screens/LoginScreen";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
-import useAuthentication from "./src/utils/useAuthentication";
-import AsyncDemoScreen from "./src/debugScreens/AsyncDemoScreen";
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import MainScreen from './src/screens/MainScreen'
+import RegisterScreen from './src/screens/RegisterScreen'
+import CreateMScreen from './src/screens/CreateMScreen'
+import FriendsScreen from './src/screens/FriendsScreen'
+import ProfileScreen from './src/screens/ProfileScreen'
+import LoginScreen from './src/screens/LoginScreen'
+import WelcomeScreen from './src/screens/WelcomeScreen'
+import useAuthentication from './src/utils/useAuthentication'
+import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
-  const { user } = useAuthentication();
+  const { user } = useAuthentication()
 
   return (
     <NavigationContainer>
@@ -39,5 +39,5 @@ export default function App() {
         )}
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

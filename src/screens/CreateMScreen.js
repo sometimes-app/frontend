@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { useState, useEffect, useRef } from "react";
+import { StatusBar } from 'expo-status-bar'
+import { useState, useEffect, useRef } from 'react'
 import {
   StyleSheet,
   Text,
@@ -9,12 +9,12 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Pressable,
-} from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { suggestedMessages } from "../mockData";
-import Header from "../components/Header";
-import { globalStyle, colors } from "../styles/styles";
-import PropTypes from "prop-types";
+} from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
+import { suggestedMessages } from '../mockData'
+import Header from '../components/Header'
+import { globalStyle, colors } from '../styles/styles'
+import PropTypes from 'prop-types'
 
 /**
  * @summary
@@ -22,36 +22,35 @@ import PropTypes from "prop-types";
  * @returns
  */
 const CreateMScreen = ({ navigation, route }) => {
-  const { ReceiverId } = route.params;
-  const inputRef = useRef();
-  const [message, setMessage] = useState("");
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const { ReceiverId } = route.params
+  const inputRef = useRef()
+  const [message, setMessage] = useState('')
+  const [keyboardVisible, setKeyboardVisible] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
-      inputRef.current?.focus();
-    }, 550);
-  }, []);
+      inputRef.current?.focus()
+    }, 550)
+  }, [])
 
-  Keyboard.addListener("keyboardDidHide", () => {
-    setKeyboardVisible(false);
-  });
+  Keyboard.addListener('keyboardDidHide', () => {
+    setKeyboardVisible(false)
+  })
 
-  Keyboard.addListener("keyboardDidShow", () => {
-    setKeyboardVisible(true);
-  });
+  Keyboard.addListener('keyboardDidShow', () => {
+    setKeyboardVisible(true)
+  })
 
   const handleSend = () => {
-    navigation.navigate("Main");
-    console.log(ReceiverId);
-    console.log(navigation);
-  };
+    navigation.navigate('Main')
+    console.log(ReceiverId)
+  }
 
   const handleSuggestion = () => {
-    console.log(suggestedMessages);
-    const random = Math.floor(Math.random() * suggestedMessages.length);
-    setMessage(suggestedMessages[random]);
-  };
+    console.log(suggestedMessages)
+    const random = Math.floor(Math.random() * suggestedMessages.length)
+    setMessage(suggestedMessages[random])
+  }
 
   return (
     <KeyboardAvoidingView behavior="padding" style={globalStyle.background}>
@@ -64,16 +63,16 @@ const CreateMScreen = ({ navigation, route }) => {
               : styles.messageContainerKeyboardInvisible
           }
           onPress={() => {
-            Keyboard.dismiss();
+            Keyboard.dismiss()
           }}
         >
           <TextInput
             onChangeText={setMessage}
             ref={inputRef}
             value={message}
-            placeholder={"Type your message here"}
+            placeholder={'Type your message here'}
             style={styles.message}
-            keyboardAppearance={"dark"}
+            keyboardAppearance={'dark'}
             multiline={true}
           />
           <View style={styles.buttons}>
@@ -85,7 +84,7 @@ const CreateMScreen = ({ navigation, route }) => {
             </TouchableOpacity>
             <FontAwesome
               name="send"
-              color={"white"}
+              color={'white'}
               size={22}
               style={
                 message.length != 0 ? styles.sendActive : styles.sendDisabled
@@ -98,8 +97,8 @@ const CreateMScreen = ({ navigation, route }) => {
         <StatusBar style="light" />
       </View>
     </KeyboardAvoidingView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   messageContainerKeyboardVisible: {
@@ -127,22 +126,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   sendActive: {
-    alignSelf: "center",
+    alignSelf: 'center',
     marginRight: 10,
   },
   sendDisabled: {
-    alignSelf: "center",
+    alignSelf: 'center',
     marginRight: 10,
     opacity: 0.2,
   },
-});
+})
 
 CreateMScreen.propTypes = {
   route: PropTypes.object.isRequired,
-};
+}
 
-export default CreateMScreen;
+export default CreateMScreen
