@@ -32,7 +32,7 @@ const WelcomeScreen = ({ navigation }) => {
             <Text>Login</Text>
           </TouchableOpacity>
         </View>
-        <StatusBar style="light" />
+        <StatusBar style='light' />
       </View>
     </View>
   )

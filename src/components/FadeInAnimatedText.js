@@ -1,7 +1,7 @@
-import { Animated, Text, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import { Animated, Text, StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import React, { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * Helper for animated text component to individual animate a character or word in a series
@@ -12,20 +12,20 @@ import PropTypes from "prop-types";
  * @returns The view and animation tied to the view in an array
  */
 const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current
 
   const animation = new Animated.timing(fadeAnim, {
     toValue: 1,
     duration: duration,
     useNativeDriver: true,
-  });
+  })
 
   const styles = StyleSheet.create({
     text: {
       fontSize: textSize,
-      color: "lemonchiffon",
+      color: 'lemonchiffon',
     },
-  });
+  })
 
   const view = (
     <Animated.View
@@ -41,10 +41,10 @@ const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
         {textToAnimate}
       </Text>
     </Animated.View>
-  );
+  )
 
-  return [view, animation];
-};
+  return [view, animation]
+}
 
 /**
  * Fades text in
@@ -55,48 +55,48 @@ const singleElementAnimation = (textToAnimate, duration, textSize, index) => {
  */
 const FadeInAnimatedText = ({ text, byChar, textSize, duration }) => {
   const splitText = (textToSplit, byChar) => {
-    let textArray = [];
+    let textArray = []
     if (byChar) {
-      textArray = textToSplit.split("");
+      textArray = textToSplit.split('')
     } else {
-      textArray = textToSplit.split(" ");
+      textArray = textToSplit.split(' ')
     }
-    return textArray;
-  };
+    return textArray
+  }
 
   const viewAndAnimations = splitText(text, byChar).map((item, index) => {
-    return singleElementAnimation(item, duration, textSize, index);
-  });
+    return singleElementAnimation(item, duration, textSize, index)
+  })
 
   useEffect(() => {
     // get all the animations and put them in the sequence
     Animated.sequence(
       viewAndAnimations.map((viewAndAnimation) => viewAndAnimation[1])
-    ).start();
-  });
+    ).start()
+  })
 
   return (
     <SafeAreaView style={styles.container}>
       {/* get all the views and populate the entire word or sentence */}
       {viewAndAnimations.map((viewAndAnimation) => viewAndAnimation[0])}
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
-});
+})
 
 FadeInAnimatedText.propTypes = {
   text: PropTypes.string.isRequired,
   byChar: PropTypes.bool.isRequired,
   textSize: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
-};
+}
 
-export default FadeInAnimatedText;
+export default FadeInAnimatedText

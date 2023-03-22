@@ -21,6 +21,9 @@ const LoginScreen = ({ navigation }) => {
       console.log(err)
     })
   }
+      console.log(err)
+    })
+  }
 
   return (
     <View style={globalStyle.background}>

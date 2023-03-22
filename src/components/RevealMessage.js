@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 import {
   Animated,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-} from "react-native";
-import PropTypes from "prop-types";
+} from 'react-native'
+import PropTypes from 'prop-types'
 
 const RevealMessage = ({ handlePress }) => {
-  const scale = useRef(new Animated.Value(1)).current;
+  const scale = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
     Animated.loop(
@@ -24,25 +24,25 @@ const RevealMessage = ({ handlePress }) => {
           duration: 1000,
         }),
       ])
-    ).start();
-  }, []);
+    ).start()
+  }, [])
 
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: "lemonchiffon",
-      height: Dimensions.get("window").height * 0.2,
-      width: Dimensions.get("window").height * 0.2,
-      alignItems: "center",
-      justifyContent: "center",
+      backgroundColor: 'lemonchiffon',
+      height: Dimensions.get('window').height * 0.2,
+      width: Dimensions.get('window').height * 0.2,
+      alignItems: 'center',
+      justifyContent: 'center',
       borderRadius: 100,
       transform: [{ scale }],
     },
-  });
+  })
 
-  return <TouchableOpacity style={styles.button} onPress={handlePress} />;
-};
+  return <TouchableOpacity style={styles.button} onPress={handlePress} />
+}
 
 RevealMessage.propTypes = {
   handlePress: PropTypes.func.isRequired,
-};
-export default RevealMessage;
+}
+export default RevealMessage
