@@ -11,7 +11,6 @@ import { signOut } from 'firebase/auth';
 import useAuthentication from '../utils/useAuthentication';
 import Header from '../components/Header';
 import { globalStyle, colors } from '../styles/styles';
-import { NavigationPropType } from '../propTypes';
 
 /** Screen where the profile can be viewed. */
 const ProfileScreen = ({ navigation }) => {
@@ -79,9 +78,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-
-ProfileScreen.propTypes = {
-  navigation: NavigationPropType,
-};
 
 export default ProfileScreen;

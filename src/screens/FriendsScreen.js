@@ -15,7 +15,7 @@ import { friends } from '../mockData';
 import { globalStyle, colors } from '../styles/styles';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Header from '../components/Header';
-import { NavigationPropType } from '../propTypes';
+
 import PropTypes from 'prop-types';
 
 const FriendsScreen = ({ navigation }) => {
@@ -150,9 +150,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
-FriendsScreen.propTypes = {
-  navigation: NavigationPropType,
-};
 
 export default FriendsScreen;

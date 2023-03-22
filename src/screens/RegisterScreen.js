@@ -11,7 +11,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { authentication } from '../../firebaseConfig';
 import { colors, globalStyle } from '../styles/styles';
 import Header from '../components/Header';
-import { NavigationPropType } from '../propTypes';
 
 /** Register Screen */
 const RegisterScreen = ({ navigation }) => {
@@ -101,9 +100,5 @@ const styles = StyleSheet.create({
     padding: '4%',
   },
 });
-
-RegisterScreen.propTypes = {
-  navigation: NavigationPropType,
-};
 
 export default RegisterScreen;

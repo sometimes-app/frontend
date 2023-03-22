@@ -2,7 +2,6 @@ import { StyleSheet, View } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import Logo from '../components/Logo';
 import PropTypes from 'prop-types';
-import { NavigationPropType } from '../propTypes';
 
 const Header = ({ showBack, navigation, showProfile }) => {
   const styles = StyleSheet.create({
@@ -54,7 +53,6 @@ const Header = ({ showBack, navigation, showProfile }) => {
 
 Header.propTypes = {
   showBack: PropTypes.bool.isRequired,
-  navigation: NavigationPropType,
   showProfile: PropTypes.bool.isRequired,
 };
 

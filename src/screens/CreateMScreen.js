@@ -14,7 +14,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import { suggestedMessages } from '../mockData';
 import Header from '../components/Header';
 import { globalStyle, colors } from '../styles/styles';
-import { NavigationPropType } from '../propTypes';
 import PropTypes from 'prop-types';
 
 /**
@@ -45,6 +44,7 @@ const CreateMScreen = ({ navigation, route }) => {
   const handleSend = () => {
     navigation.navigate('Main');
     console.log(ReceiverId);
+    console.log(navigation);
   };
 
   const handleSuggestion = () => {
@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
 });
 
 CreateMScreen.propTypes = {
-  navigation: NavigationPropType,
   route: PropTypes.object.isRequired,
 };
 

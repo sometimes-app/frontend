@@ -12,7 +12,6 @@ import FadeInAnimatedText from '../components/FadeInAnimatedText';
 import RevealMessage from '../components/RevealMessage';
 import Header from '../components/Header';
 import { globalStyle, colors } from '../styles/styles';
-import { NavigationPropType } from '../propTypes';
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
@@ -107,9 +106,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
-
-MainScreen.propTypes = {
-  navigation: NavigationPropType,
-};
 
 export default MainScreen;

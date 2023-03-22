@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import FadeInAnimatedText from '../components/FadeInAnimatedText';
 import { globalStyle } from '../styles/styles';
-import { NavigationType } from '../propTypes';
 
 /** Screen to pick a profile or create one. */
 const WelcomeScreen = ({ navigation }) => {
@@ -55,9 +54,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-WelcomeScreen.propTypes = {
-  navigation: NavigationType,
-};
 
 export default WelcomeScreen;
