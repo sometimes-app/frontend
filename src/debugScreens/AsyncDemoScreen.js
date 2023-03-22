@@ -48,8 +48,8 @@ const CreateMScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Async Demo Screen</Text>
-      <TextInput placeholder="Key" value={k} onChangeText={setK} />
-      <TextInput placeholder="Value" value={v} onChangeText={setV} />
+      <TextInput placeholder='Key' value={k} onChangeText={setK} />
+      <TextInput placeholder='Value' value={v} onChangeText={setV} />
       <TouchableOpacity
         style={styles.touch}
         onPress={() => {
@@ -58,7 +58,7 @@ const CreateMScreen = () => {
       >
         <Text>Store in Async Storage</Text>
       </TouchableOpacity>
-      <TextInput placeholder="Search" value={search} onChangeText={setSearch} />
+      <TextInput placeholder='Search' value={search} onChangeText={setSearch} />
       <TouchableOpacity
         style={styles.touch}
         onPress={() => {
@@ -83,7 +83,7 @@ const CreateMScreen = () => {
           </Text>
         )
       })}
-      <TextInput placeholder="Remove" value={remove} onChangeText={setRemove} />
+      <TextInput placeholder='Remove' value={remove} onChangeText={setRemove} />
       <TouchableOpacity
         style={styles.touch}
         onPress={() => {
@@ -100,7 +100,7 @@ const CreateMScreen = () => {
       >
         <Text>Clear all</Text>
       </TouchableOpacity>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
     </View>
   )
 }

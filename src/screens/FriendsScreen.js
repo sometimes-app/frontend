@@ -49,10 +49,10 @@ const FriendsScreen = ({ navigation }) => {
         <Header showBack={true} navigation={navigation} showProfile={true} />
         <TextInput
           style={styles.searchBar}
-          placeholder="Search friends"
+          placeholder='Search friends'
           value={searchQuery}
           onChangeText={handleSearch}
-          placeholderTextColor="rgba(255,255,255,.8)"
+          placeholderTextColor='rgba(255,255,255,.8)'
         />
         <Text style={{ color: colors.accentColor, marginTop: 15 }}>
           MY FRIENDS ({friends.length})
@@ -63,7 +63,7 @@ const FriendsScreen = ({ navigation }) => {
             onScroll={() => {
               Keyboard.dismiss()
             }}
-            keyboardShouldPersistTaps="handled"
+            keyboardShouldPersistTaps='handled'
             keyExtractor={(friend) => friend.id.toString()}
             renderItem={({ item }) => (
               <Swipeable
@@ -76,7 +76,7 @@ const FriendsScreen = ({ navigation }) => {
                   onPress={() => {
                     navigation.navigate('CreateM', { ReceiverId: item.id })
                   }}
-                  underlayColor="rgb(50,50,50)"
+                  underlayColor='rgb(50,50,50)'
                   activeOpacity={0.1}
                 >
                   <>
@@ -96,7 +96,7 @@ const FriendsScreen = ({ navigation }) => {
             )}
           />
         </View>
-        <StatusBar style="light" />
+        <StatusBar style='light' />
       </View>
     </View>
   )

@@ -57,26 +57,26 @@ const MainScreen = ({ navigation }) => {
         <Header navigation={navigation} showProfile={true} />
         {buttonOrMessage}
         <Button
-          title="reset"
+          title='reset'
           onPress={() => {
             handleReset()
           }}
         />
         <View style={styles.bottomButtons}>
           <TouchableOpacity style={styles.previous} onPress={() => {}}>
-            <EvilIcons name="archive" color="black" size={32} />
+            <EvilIcons name='archive' color='black' size={32} />
             <Text style={styles.previousText}>Message Archive</Text>
           </TouchableOpacity>
           <FontAwesome5
-            name="pen-fancy"
+            name='pen-fancy'
             size={32}
-            color="white"
+            color='white'
             onPress={() => {
               navigation.navigate('Friends')
             }}
           />
         </View>
-        <StatusBar style="light" />
+        <StatusBar style='light' />
       </View>
     </View>
   )

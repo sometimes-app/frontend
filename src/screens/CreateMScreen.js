@@ -53,7 +53,7 @@ const CreateMScreen = ({ navigation, route }) => {
   }
 
   return (
-    <KeyboardAvoidingView behavior="padding" style={globalStyle.background}>
+    <KeyboardAvoidingView behavior='padding' style={globalStyle.background}>
       <View style={globalStyle.container}>
         <Header navigation={navigation} showBack={true} showProfile={true} />
         <Pressable
@@ -83,7 +83,7 @@ const CreateMScreen = ({ navigation, route }) => {
               <Text style={{ fontSize: 20 }}>Suggestion</Text>
             </TouchableOpacity>
             <FontAwesome
-              name="send"
+              name='send'
               color={'white'}
               size={22}
               style={
@@ -94,7 +94,7 @@ const CreateMScreen = ({ navigation, route }) => {
             />
           </View>
         </Pressable>
-        <StatusBar style="light" />
+        <StatusBar style='light' />
       </View>
     </KeyboardAvoidingView>
   )

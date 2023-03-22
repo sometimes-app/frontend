@@ -17,31 +17,31 @@ const Header = ({ showBack, navigation, showProfile }) => {
     <View style={styles.header}>
       {showBack ? (
         <Ionicons
-          name="ios-arrow-back-outline"
+          name='ios-arrow-back-outline'
           size={32}
-          color="white"
+          color='white'
           onPress={() => {
             navigation.goBack()
           }}
         />
       ) : (
-        <Ionicons name="ios-arrow-back-outline" size={32} color="black" />
+        <Ionicons name='ios-arrow-back-outline' size={32} color='black' />
       )}
       <Logo />
       {showProfile ? (
         <Feather
-          name="user"
+          name='user'
           size={32}
-          color="white"
+          color='white'
           onPress={() => {
             navigation.navigate('Profile')
           }}
         />
       ) : (
         <Feather
-          name="user"
+          name='user'
           size={32}
-          color="black"
+          color='black'
           onPress={() => {
             navigation.navigate('Profile')
           }}

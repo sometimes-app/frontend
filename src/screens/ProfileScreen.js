@@ -36,7 +36,7 @@ const ProfileScreen = ({ navigation }) => {
         title="Async Demo"
         onPress={() => {navigation.navigate('AsyncDemo')}}
       /> */}
-      <StatusBar style="light" />
+      <StatusBar style='light' />
     </View>
   )
 }

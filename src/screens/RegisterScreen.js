@@ -33,18 +33,18 @@ const RegisterScreen = ({ navigation }) => {
           <Text style={styles.createText}>Create an account</Text>
           <TextInput
             style={styles.email}
-            placeholder="Email"
+            placeholder='Email'
             value={email}
             onChangeText={setEmail}
-            placeholderTextColor="gray"
+            placeholderTextColor='gray'
           />
           <TextInput
             style={styles.password}
-            placeholder="Password"
+            placeholder='Password'
             value={password}
             secureTextEntry={true}
             onChangeText={setPassword}
-            placeholderTextColor="gray"
+            placeholderTextColor='gray'
           />
           <TouchableOpacity
             style={styles.signUp}
@@ -55,7 +55,7 @@ const RegisterScreen = ({ navigation }) => {
             <Text style={{ fontWeight: 'bold' }}>Sign Up</Text>
           </TouchableOpacity>
         </View>
-        <StatusBar style="light" />
+        <StatusBar style='light' />
       </View>
     </View>
   )

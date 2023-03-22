@@ -23,9 +23,9 @@ const LoginScreen = () => {
   return (
     <>
       <View style={styles.container}>
-        <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
+        <TextInput placeholder='Email' value={email} onChangeText={setEmail} />
         <TextInput
-          placeholder="Password"
+          placeholder='Password'
           value={password}
           secureTextEntry={true}
           onChangeText={setPassword}
@@ -38,7 +38,7 @@ const LoginScreen = () => {
           <Text>Sign In</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
     </>
   )
 }
