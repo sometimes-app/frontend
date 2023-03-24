@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "jest-expo",
+    "preset": "react-native",
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|@firebase|firebase)"
     ],
@@ -33,7 +33,7 @@
     "firebase": "^9.17.1",
     "jest": "^26.6.3",
     "jest-expo": "^48.0.2",
-    "prop-types": "^15.8.1",
+    "prop-types": "^15.8.1 bnhnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nbhnhhhhnhhhhhhhhhnbbbbbbhh",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",

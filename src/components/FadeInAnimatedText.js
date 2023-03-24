@@ -70,6 +70,8 @@ const FadeInAnimatedText = ({ text, byChar, textSize, duration }) => {
 
   useEffect(() => {
     // get all the animations and put them in the sequence
+    console.log(Animated)
+    console.log(Animated.sequence)
     Animated.sequence(
       viewAndAnimations.map((viewAndAnimation) => viewAndAnimation[1])
     ).start()
