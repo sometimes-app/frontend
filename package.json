@@ -13,12 +13,21 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|@firebase|firebase)"
     ],
     "setupFiles": [
       "./jestConfig.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js",
+      "!**/Tests/**"
     ]
   },
   "dependencies": {
@@ -33,7 +42,7 @@
     "firebase": "^9.17.1",
     "jest": "^26.6.3",
     "jest-expo": "^48.0.2",
-    "prop-types": "^15.8.1 bnhnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nbhnhhhhnhhhhhhhhhnbbbbbbhh",
+    "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
@@ -46,6 +55,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@expo/ngrok": "^4.1.0",
+    "@testing-library/react-native": "^12.0.1",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
