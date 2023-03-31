@@ -78,6 +78,7 @@ const FriendsScreen = ({ navigation }) => {
                   }}
                   underlayColor='rgb(50,50,50)'
                   activeOpacity={0.1}
+                  accessibilityLabel={'friend-tile'}
                 >
                   <>
                     <View style={styles.initialsContainer}>

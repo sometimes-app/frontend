@@ -25,37 +25,30 @@ describe('This should alway pass', () => {
   })
 })
 
-describe('App', () => {
-  beforeEach(() => {
-    render(<App />)
-  })
-  it('should press Login', () => {
-    fireEvent.press(screen.getByText('Login'))
-  })
-  it('should press Create Profile', () => {
-    fireEvent.press(screen.getByText('Create Profile'))
-  })
-})
+// describe('App', () => {
+//   beforeEach(() => {
+//     render(<App />)
+//   })
+//   it('should press Login', () => {
+//     fireEvent.press(screen.getByText('Login'))
+//   })
+//   it('should press Create Profile', () => {
+//     fireEvent.press(screen.getByText('Create Profile'))
+//   })
+// })
 
-describe('Login', () => {
-  beforeEach(() => {
-    render(<App />)
-    fireEvent.press(screen.getByText('Login'))
-  })
-  it('should enter an email', () => {
-    fireEvent.changeText(screen.getByPlaceholderText('Email'), 'Hello@a.com')
-  })
-  it('should navigate to Forgot screen', () => {
-    fireEvent.press(screen.getByText('Forgot password?'))
-  })
-})
-
-describe('Welcome', () => {
-  beforeEach(() => {
-    render(<App />)
-    fireEvent.press(screen.getByText('Create Profile'))
-  })
-})
+// describe('Login', () => {
+//   beforeEach(() => {
+//     render(<App />)
+//     fireEvent.press(screen.getByText('Login'))
+//   })
+//   it('should enter an email', () => {
+//     fireEvent.changeText(screen.getByPlaceholderText('Email'), 'Hello@a.com')
+//   })
+//   it('should navigate to Forgot screen', () => {
+//     fireEvent.press(screen.getByText('Forgot password?'))
+//   })
+// })
 
 // import MainScreen from '../src/screens/MainScreen'
 

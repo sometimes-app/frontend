@@ -43,11 +43,11 @@ const CreateMScreen = ({ navigation, route }) => {
 
   const handleSend = () => {
     navigation.navigate('Main')
-    console.log(ReceiverId)
+    // console.log(ReceiverId)
   }
 
   const handleSuggestion = () => {
-    console.log(suggestedMessages)
+    // console.log(suggestedMessages)
     const random = Math.floor(Math.random() * suggestedMessages.length)
     setMessage(suggestedMessages[random])
   }
@@ -91,6 +91,7 @@ const CreateMScreen = ({ navigation, route }) => {
               }
               onPress={handleSend}
               disabled={message.length == 0}
+              testID='sendButton'
             />
           </View>
         </Pressable>
