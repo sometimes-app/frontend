@@ -2,7 +2,6 @@ import {
   View,
   StatusBar,
   FlatList,
-  TouchableOpacity,
   StyleSheet,
   Text,
   Dimensions,
@@ -10,7 +9,7 @@ import {
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
 import { archive } from '../mockData'
-const { width, height } = Dimensions.get('screen')
+const { width } = Dimensions.get('screen')
 
 const ArchiveScreen = ({ navigation }) => {
   return (
@@ -24,8 +23,8 @@ const ArchiveScreen = ({ navigation }) => {
           pagingEnabled
           keyExtractor={(message) => message.id.toString()}
           renderItem={({ item }) => (
-            <View style={styles.messageContainer}>
-              <Text style={{ fontSize: 16 }}>{item.message}</Text>
+            <View style={styles.messageContainer} testID={'archive-message'}>
+              <Text style={styles.message}>{item.message}</Text>
               <Text style={styles.sender}>- {item.sender}</Text>
             </View>
           )}
@@ -37,17 +36,24 @@ const ArchiveScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   messageContainer: {
-    backgroundColor: colors.primaryColor,
     paddingHorizontal: 20,
     paddingVertical: 25,
-    marginVertical: 15,
+    marginVertical: 20,
     marginHorizontal: 8,
-    borderRadius: 5,
+    marginBottom: 60,
+    borderRadius: 10,
     width: width - 36,
+    justifyContent: 'center',
   },
   sender: {
+    color: colors.primaryColor,
     marginLeft: 3,
     marginTop: 4,
+    fontSize: 16,
+  },
+  message: {
+    color: colors.primaryColor,
+    fontSize: 26,
   },
 })
 
