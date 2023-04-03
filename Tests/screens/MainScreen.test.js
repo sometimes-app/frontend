@@ -9,6 +9,13 @@ describe('MainScreen', () => {
   })
   it('should navigate to friends', () => {
     fireEvent.press(screen.getByLabelText('write-message'))
-    // expect(mockNavigation.navigate).toBeCalledWith('Friends')
+    expect(mockNavigation.navigate).toBeCalledWith('Friends')
+  })
+  it('should press archive', () => {
+    fireEvent.press(screen.getByText('Message Archive'))
+  })
+  it('should press motivated', () => {
+    fireEvent.press(screen.getByRole('button'))
+    fireEvent.press(screen.getByTestId('motivated'))
   })
 })

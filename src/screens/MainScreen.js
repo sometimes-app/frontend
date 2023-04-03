@@ -46,7 +46,10 @@ const MainScreen = ({ navigation }) => {
   } else {
     buttonOrMessage = (
       <View style={styles.buttonContainer}>
-        <RevealMessage handlePress={handleMotivatedPress} />
+        <RevealMessage
+          handlePress={handleMotivatedPress}
+          testID={'motivated'}
+        />
       </View>
     )
   }
@@ -67,16 +70,14 @@ const MainScreen = ({ navigation }) => {
             <EvilIcons name='archive' color='black' size={32} />
             <Text style={styles.previousText}>Message Archive</Text>
           </TouchableOpacity>
-          <View accessibilityLabel='write-message'>
-            <FontAwesome5
-              name='pen-fancy'
-              size={32}
-              color='white'
-              onPress={() => {
-                navigation.navigate('Friends')
-              }}
-            />
-          </View>
+          <TouchableOpacity
+            accessibilityLabel='write-message'
+            onPress={() => {
+              navigation.navigate('Friends')
+            }}
+          >
+            <FontAwesome5 name='pen-fancy' size={32} color='white' />
+          </TouchableOpacity>
         </View>
         <StatusBar style='light' />
       </View>
