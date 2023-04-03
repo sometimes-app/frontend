@@ -67,8 +67,9 @@ const MainScreen = ({ navigation }) => {
             <EvilIcons name='archive' color='black' size={32} />
             <Text style={styles.previousText}>Message Archive</Text>
           </TouchableOpacity>
-          <View accessibilityLabel='write-message'>
+          <View>
             <FontAwesome5
+              accessibilityLabel='write-message'
               name='pen-fancy'
               size={32}
               color='white'
