@@ -66,7 +66,12 @@ const MainScreen = ({ navigation }) => {
           }}
         />
         <View style={styles.bottomButtons}>
-          <TouchableOpacity style={styles.previous} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.previous}
+            onPress={() => {
+              navigation.navigate('Archive')
+            }}
+          >
             <EvilIcons name='archive' color='black' size={32} />
             <Text style={styles.previousText}>Message Archive</Text>
           </TouchableOpacity>
