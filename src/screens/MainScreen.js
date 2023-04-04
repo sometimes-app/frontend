@@ -12,17 +12,21 @@ import FadeInAnimatedText from '../components/FadeInAnimatedText'
 import RevealMessage from '../components/RevealMessage'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
+import { UserInfoService } from '../services/userInfoService'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
   const [lastMessageTime, setLastMessageTime] = useState()
   useAuthentication()
 
+  const userInfoService = new UserInfoService()
+
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
+    userInfoService.GetUserInfo().then((data) => console.log(data))
   }, [])
 
-  const handleMotivatedPress = () => {
+  const handleMotivatedPress = async () => {
     const now = Math.floor(Date.now() / 1000)
     setStringValue('lastMessageTime', now)
     setLastMessageTime(now)
