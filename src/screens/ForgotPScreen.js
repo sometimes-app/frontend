@@ -15,7 +15,7 @@ import Header from '../components/Header'
 const ForgotScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
 
-  const SignInUser = () => {
+  const handleReset = () => {
     sendPasswordResetEmail(authentication, email).catch((err) => {
       console.log(err)
     })
@@ -36,7 +36,7 @@ const ForgotScreen = ({ navigation }) => {
         <TouchableOpacity
           style={styles.signIn}
           onPress={() => {
-            SignInUser()
+            handleReset()
           }}
         >
           <Text style={{ fontWeight: 'bold' }}>Reset</Text>

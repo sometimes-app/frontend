@@ -196,3 +196,58 @@ export const friends = [
     username: 'WetWilly',
   },
 ]
+
+export const archive = [
+  {
+    id: 2,
+    message: 'I believe in you, and I know you can do this.',
+    sender: 'Bob',
+  },
+  {
+    id: 3,
+    message: "Remember, tough times don't last, but tough people do.",
+    sender: 'Charlie',
+  },
+  {
+    id: 4,
+    message: "I am here for you, and I'll support you no matter what.",
+    sender: 'Dana',
+  },
+  {
+    id: 5,
+    message: 'You are so much stronger than you think you are.',
+    sender: 'Elliot',
+  },
+  {
+    id: 6,
+    message: 'I admire your resilience and determination.',
+    sender: 'Frank',
+  },
+  {
+    id: 7,
+    message: 'I know things are hard right now, but they will get better.',
+    sender: 'Gina',
+  },
+  {
+    id: 8,
+    message: "You are not alone, and I'm here to help in any way I can.",
+    sender: 'Henry',
+  },
+  {
+    id: 9,
+    message:
+      "You have so much potential, and I'm excited to see what you'll accomplish.",
+    sender: 'Ivy',
+  },
+  {
+    id: 10,
+    message: 'I am proud of you for trying your best.',
+    sender: 'Jake',
+  },
+  {
+    id: 11,
+    message:
+      'One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten. One two three four five six seven eight nine ten',
+    sender: 'Jake',
+  },
+]

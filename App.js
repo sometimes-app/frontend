@@ -10,6 +10,7 @@ import WelcomeScreen from './src/screens/WelcomeScreen'
 import ForgotScreen from './src/screens/ForgotPScreen'
 import useAuthentication from './src/utils/useAuthentication'
 import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
+import ArchiveScreen from './src/screens/ArchiveScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -30,6 +31,7 @@ export default function App() {
             <Stack.Screen name='CreateM' component={CreateMScreen} />
             <Stack.Screen name='Profile' component={ProfileScreen} />
             <Stack.Screen name='AsyncDemo' component={AsyncDemoScreen} />
+            <Stack.Screen name='Archive' component={ArchiveScreen} />
           </>
         ) : (
           <>
