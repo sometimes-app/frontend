@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native'
+import { render, screen } from '@testing-library/react-native'
 import { mockNavigation } from '../mocks/navigation-mock'
 import ArchiveScreen from '../../src/screens/ArchiveScreen'
 import { describe, beforeEach, it, expect } from '@jest/globals'
