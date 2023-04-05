@@ -23,7 +23,14 @@ const MainScreen = ({ navigation }) => {
 
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
-    userInfoService.GetUserInfo().then((data) => console.log(data))
+    userInfoService
+      .GetUserInfo()
+      .then((data) => {
+        console.log(data.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [])
 
   const handleMotivatedPress = async () => {

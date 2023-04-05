@@ -2,14 +2,13 @@ import { Configuration } from '../client/configuration'
 import { UserInfoApi } from '../client/api'
 
 export class UserInfoService {
-  #userInfoApi
   constructor() {
     const configParams = {
       apiKey: undefined,
       username: undefined,
       password: undefined,
       accessToken: undefined,
-      basePath: 'http://localhost:5228',
+      basePath: 'http://10.0.0.65:5229',
       baseOptions: undefined,
       formDataCtor: undefined,
     }
@@ -18,11 +17,19 @@ export class UserInfoService {
     this.userInfoApi = new UserInfoApi(config)
   }
 
-  async GetUserInfo() {
-    const data = await this.userInfoApi.getUserInfo(
-      'e31ed2e1-3214-4cfd-96ee-ecfe16167075'
-    )
-    console.log(data.data)
-    return data.data
+  /**
+   * Gets a user's information
+   * @param {string} user uuid
+   */
+  GetUserInfo(user) {
+    return this.userInfoApi.getUserInfo(user)
+  }
+
+  /**
+   * Gets a user's information
+   * @param {UserInfo} userInfo user
+   */
+  AddUserInfo(userInfo) {
+    return this.userInfoApi.addUserInfo(userInfo)
   }
 }

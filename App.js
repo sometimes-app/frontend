@@ -11,6 +11,7 @@ import ForgotScreen from './src/screens/ForgotPScreen'
 import useAuthentication from './src/utils/useAuthentication'
 import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
 import ArchiveScreen from './src/screens/ArchiveScreen'
+import 'react-native-url-polyfill/auto'
 
 const Stack = createNativeStackNavigator()
 
