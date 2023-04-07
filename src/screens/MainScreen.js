@@ -1,25 +1,39 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+} from 'react-native'
 import useAuthentication from '../utils/useAuthentication'
 import {
   getStringValue,
   setStringValue,
   removeValue,
 } from '../utils/asyncStorage'
-import { FontAwesome5, EvilIcons } from '@expo/vector-icons'
+import { FontAwesome5, EvilIcons, MaterialIcons } from '@expo/vector-icons'
 import FadeInAnimatedText from '../components/FadeInAnimatedText'
-import RevealMessage from '../components/RevealMessage'
+import Bear from '../components/Bear'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
   const [lastMessageTime, setLastMessageTime] = useState()
+  const [seenInstructions, setSeenInstructions] = useState(true)
+  const [showModalTwo, setShowModalTwo] = useState(false)
+  const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
 
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
+    getStringValue('seenInstructions').then((res) => {
+      if (res === null) setSeenInstructions(false)
+    })
   }, [])
 
   const handleMotivatedPress = () => {
@@ -46,10 +60,7 @@ const MainScreen = ({ navigation }) => {
   } else {
     buttonOrMessage = (
       <View style={styles.buttonContainer}>
-        <RevealMessage
-          handlePress={handleMotivatedPress}
-          testID={'motivated'}
-        />
+        <Bear handlePress={handleMotivatedPress} />
       </View>
     )
   }
@@ -58,6 +69,88 @@ const MainScreen = ({ navigation }) => {
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <Header navigation={navigation} showProfile={true} />
+        <Modal
+          visible={!seenInstructions}
+          animationType='fade'
+          transparent={true}
+        >
+          <View style={modalStyles.flexView}>
+            <View style={modalStyles.modalViewOne}>
+              <Text>
+                Welcome to Sometimes! A place to go when you need a wholesome
+                pick me up.
+              </Text>
+              <Pressable
+                onPress={() => {
+                  setSeenInstructions(true)
+                  setStringValue('seenInstructions', 'true')
+                  setShowModalTwo(true)
+                }}
+              >
+                <MaterialIcons
+                  name='keyboard-arrow-right'
+                  size={28}
+                  color={colors.backgroundColor}
+                  style={{ alignSelf: 'flex-end' }}
+                />
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+        <Modal visible={showModalTwo} animationType='fade' transparent={true}>
+          <View style={modalStyles.flexView}>
+            <View style={modalStyles.modalViewTwo}>
+              <Text>
+                Tap the sleeping bear to reveal some kind words from a friend or
+                loved one.
+              </Text>
+              <Pressable
+                onPress={() => {
+                  setShowModalTwo(false)
+                  setShowModalThree(true)
+                }}
+              >
+                <MaterialIcons
+                  name='keyboard-arrow-right'
+                  size={28}
+                  color={colors.backgroundColor}
+                  style={{ alignSelf: 'flex-end' }}
+                />
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+        <Modal visible={showModalThree} animationType='fade' transparent={true}>
+          <View style={modalStyles.flexView}>
+            <View style={modalStyles.modalViewThree}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  backgroundColor: 'white',
+                  borderRadius: 20,
+                  padding: 15,
+                }}
+              >
+                <Text>
+                  After 24 hours the bear goes back to sleep and you can reveal
+                  another message when you need it!
+                </Text>
+                <Pressable
+                  onPress={() => {
+                    setShowModalThree(false)
+                  }}
+                >
+                  <MaterialIcons
+                    name='close'
+                    size={22}
+                    color={colors.backgroundColor}
+                    style={{ alignSelf: 'flex-end' }}
+                  />
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
         {buttonOrMessage}
         <Button
           title='reset'
@@ -112,6 +205,39 @@ const styles = StyleSheet.create({
   previousText: {
     fontSize: 20,
     marginLeft: 10,
+  },
+})
+
+const modalStyles = StyleSheet.create({
+  flexView: {
+    flex: 1,
+  },
+  modalViewOne: {
+    alignSelf: 'flex-end',
+    top: '15%',
+    right: '5%',
+    maxWidth: '80%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    paddingBottom: 2,
+  },
+  modalViewTwo: {
+    top: '15%',
+    left: '5%',
+    maxWidth: '80%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    paddingBottom: 2,
+  },
+  modalViewThree: {
+    alignSelf: 'flex-end',
+    top: '65%',
+    right: '5%',
+    maxWidth: '80%',
   },
 })
 
