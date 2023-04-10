@@ -14,6 +14,7 @@ export const TutorialStartModal = ({ isVisible, handlePress }) => {
               me up.
             </Text>
             <Pressable
+              testID='tutorialModal1Press'
               onPress={(event) => {
                 handlePress(event)
               }}
@@ -43,6 +44,7 @@ export const TutorialStep2Modal = ({ isVisible, handlePress }) => {
               loved one.
             </Text>
             <Pressable
+              testID='tutorialModal2Press'
               onPress={(event) => {
                 handlePress(event)
               }}
@@ -80,6 +82,7 @@ export const TutorialStep3Modal = ({ isVisible, handlePress }) => {
                 another message when you need it!
               </Text>
               <Pressable
+                testID='tutorialModal3Press'
                 onPress={(event) => {
                   handlePress(event)
                 }}

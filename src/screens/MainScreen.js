@@ -21,7 +21,7 @@ import {
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
   const [lastMessageTime, setLastMessageTime] = useState()
-  const [seenInstructions, setSeenInstructions] = useState(false)
+  const [seenInstructions, setSeenInstructions] = useState(true)
   const [showModalTwo, setShowModalTwo] = useState(false)
   const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
@@ -29,7 +29,9 @@ const MainScreen = ({ navigation }) => {
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
     getStringValue('seenInstructions').then((res) => {
-      if (res === null) setSeenInstructions(false)
+      if (res === null) {
+        setSeenInstructions(false)
+      }
     })
   }, [])
 
