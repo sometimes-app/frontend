@@ -11,6 +11,9 @@ import ForgotScreen from './src/screens/ForgotPScreen'
 import useAuthentication from './src/utils/useAuthentication'
 import AsyncDemoScreen from './src/debugScreens/AsyncDemoScreen'
 import ArchiveScreen from './src/screens/ArchiveScreen'
+// Turn on to hide warnings when creating demos
+// import { LogBox } from 'react-native'
+// LogBox.ignoreAllLogs() //Ignore all log notifications
 
 const Stack = createNativeStackNavigator()
 

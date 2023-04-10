@@ -6,7 +6,7 @@ import {
   getAllKeys,
   clearAll,
 } from '../../src/utils/asyncStorage'
-import { describe, beforeEach, it, expect } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 
 describe('Async Storage', () => {
   it('should get string from async', async () => {
