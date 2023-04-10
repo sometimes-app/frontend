@@ -16,7 +16,7 @@ import {
   TutorialStartModal,
   TutorialStep2Modal,
   TutorialStep3Modal,
-} from '../components/MainScreenModals'
+} from '../components/TutorialModals'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
