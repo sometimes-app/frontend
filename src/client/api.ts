@@ -36,6 +36,43 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base'
 /**
  *
  * @export
+ * @interface FriendInfo
+ */
+export interface FriendInfo {
+  /**
+   *
+   * @type {string}
+   * @memberof FriendInfo
+   */
+  uuid?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof FriendInfo
+   */
+  firstName?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof FriendInfo
+   */
+  lastName?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof FriendInfo
+   */
+  userName?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof FriendInfo
+   */
+  profilePicUrl?: string | null
+}
+/**
+ *
+ * @export
  * @interface ProblemDetails
  */
 export interface ProblemDetails {
@@ -132,15 +169,17 @@ export const UserInfoApiAxiosParamCreator = function (
   return {
     /**
      *
-     * @param {UserInfo} [userInfo]
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    addUserInfo: async (
-      userInfo?: UserInfo,
+    userInfoAddFriendPost: async (
+      uuid?: string,
+      friendUuid?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/UserInfo`
+      const localVarPath = `/UserInfo/AddFriend`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -149,14 +188,20 @@ export const UserInfoApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: 'PUT',
+        method: 'POST',
         ...baseOptions,
         ...options,
       }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
+      if (uuid != null) {
+        localVarHeaderParameter['uuid'] = String(uuid)
+      }
+
+      if (friendUuid != null) {
+        localVarHeaderParameter['friendUuid'] = String(friendUuid)
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions =
@@ -166,11 +211,6 @@ export const UserInfoApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        userInfo,
-        localVarRequestOptions,
-        configuration
-      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -183,7 +223,51 @@ export const UserInfoApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getUserInfo: async (
+    userInfoFriendsGet: async (
+      uuid?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/UserInfo/Friends`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (uuid != null) {
+        localVarHeaderParameter['uuid'] = String(uuid)
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoGet: async (
       uuid?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
@@ -221,6 +305,103 @@ export const UserInfoApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {UserInfo} [userInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoPost: async (
+      userInfo?: UserInfo,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/UserInfo`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        userInfo,
+        localVarRequestOptions,
+        configuration
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoRemoveFriendPost: async (
+      uuid?: string,
+      friendUuid?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/UserInfo/RemoveFriend`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (uuid != null) {
+        localVarHeaderParameter['uuid'] = String(uuid)
+      }
+
+      if (friendUuid != null) {
+        localVarHeaderParameter['friendUuid'] = String(friendUuid)
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -233,20 +414,24 @@ export const UserInfoApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @param {UserInfo} [userInfo]
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async addUserInfo(
-      userInfo?: UserInfo,
+    async userInfoAddFriendPost(
+      uuid?: string,
+      friendUuid?: string,
       options?: AxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserInfo>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.addUserInfo(
-        userInfo,
-        options
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.userInfoAddFriendPost(
+          uuid,
+          friendUuid,
+          options
+        )
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -260,16 +445,90 @@ export const UserInfoApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getUserInfo(
+    async userInfoFriendsGet(
+      uuid?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<FriendInfo>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.userInfoFriendsGet(uuid, options)
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      )
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async userInfoGet(
       uuid?: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserInfo>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getUserInfo(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.userInfoGet(
         uuid,
         options
       )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      )
+    },
+    /**
+     *
+     * @param {UserInfo} [userInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async userInfoPost(
+      userInfo?: UserInfo,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserInfo>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.userInfoPost(
+        userInfo,
+        options
+      )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      )
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async userInfoRemoveFriendPost(
+      uuid?: string,
+      friendUuid?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.userInfoRemoveFriendPost(
+          uuid,
+          friendUuid,
+          options
+        )
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -293,13 +552,18 @@ export const UserInfoApiFactory = function (
   return {
     /**
      *
-     * @param {UserInfo} [userInfo]
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    addUserInfo(userInfo?: UserInfo, options?: any): AxiosPromise<UserInfo> {
+    userInfoAddFriendPost(
+      uuid?: string,
+      friendUuid?: string,
+      options?: any
+    ): AxiosPromise<void> {
       return localVarFp
-        .addUserInfo(userInfo, options)
+        .userInfoAddFriendPost(uuid, friendUuid, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -308,9 +572,50 @@ export const UserInfoApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getUserInfo(uuid?: string, options?: any): AxiosPromise<UserInfo> {
+    userInfoFriendsGet(
+      uuid?: string,
+      options?: any
+    ): AxiosPromise<Array<FriendInfo>> {
       return localVarFp
-        .getUserInfo(uuid, options)
+        .userInfoFriendsGet(uuid, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoGet(uuid?: string, options?: any): AxiosPromise<UserInfo> {
+      return localVarFp
+        .userInfoGet(uuid, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {UserInfo} [userInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoPost(userInfo?: UserInfo, options?: any): AxiosPromise<UserInfo> {
+      return localVarFp
+        .userInfoPost(userInfo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} [uuid]
+     * @param {string} [friendUuid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userInfoRemoveFriendPost(
+      uuid?: string,
+      friendUuid?: string,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .userInfoRemoveFriendPost(uuid, friendUuid, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -325,14 +630,19 @@ export const UserInfoApiFactory = function (
 export class UserInfoApi extends BaseAPI {
   /**
    *
-   * @param {UserInfo} [userInfo]
+   * @param {string} [uuid]
+   * @param {string} [friendUuid]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInfoApi
    */
-  public addUserInfo(userInfo?: UserInfo, options?: AxiosRequestConfig) {
+  public userInfoAddFriendPost(
+    uuid?: string,
+    friendUuid?: string,
+    options?: AxiosRequestConfig
+  ) {
     return UserInfoApiFp(this.configuration)
-      .addUserInfo(userInfo, options)
+      .userInfoAddFriendPost(uuid, friendUuid, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -343,9 +653,53 @@ export class UserInfoApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof UserInfoApi
    */
-  public getUserInfo(uuid?: string, options?: AxiosRequestConfig) {
+  public userInfoFriendsGet(uuid?: string, options?: AxiosRequestConfig) {
     return UserInfoApiFp(this.configuration)
-      .getUserInfo(uuid, options)
+      .userInfoFriendsGet(uuid, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} [uuid]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserInfoApi
+   */
+  public userInfoGet(uuid?: string, options?: AxiosRequestConfig) {
+    return UserInfoApiFp(this.configuration)
+      .userInfoGet(uuid, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {UserInfo} [userInfo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserInfoApi
+   */
+  public userInfoPost(userInfo?: UserInfo, options?: AxiosRequestConfig) {
+    return UserInfoApiFp(this.configuration)
+      .userInfoPost(userInfo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} [uuid]
+   * @param {string} [friendUuid]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserInfoApi
+   */
+  public userInfoRemoveFriendPost(
+    uuid?: string,
+    friendUuid?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return UserInfoApiFp(this.configuration)
+      .userInfoRemoveFriendPost(uuid, friendUuid, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

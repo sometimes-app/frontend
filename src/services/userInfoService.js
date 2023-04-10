@@ -22,7 +22,7 @@ export class UserInfoService {
    * @param {string} user uuid
    */
   GetUserInfo(user) {
-    return this.userInfoApi.getUserInfo(user)
+    return this.userInfoApi.userInfoGet(user)
   }
 
   /**
@@ -30,6 +30,6 @@ export class UserInfoService {
    * @param {UserInfo} userInfo user
    */
   AddUserInfo(userInfo) {
-    return this.userInfoApi.addUserInfo(userInfo)
+    return this.userInfoApi.userInfoPost(userInfo)
   }
 }
