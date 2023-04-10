@@ -9,20 +9,34 @@ import {
 } from '../utils/asyncStorage'
 import { FontAwesome5, EvilIcons } from '@expo/vector-icons'
 import FadeInAnimatedText from '../components/FadeInAnimatedText'
-import RevealMessage from '../components/RevealMessage'
+import Bear from '../components/Bear'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
+import {
+  TutorialStartModal,
+  TutorialStep2Modal,
+  TutorialStep3Modal,
+} from '../components/TutorialModals'
 import { UserInfoService } from '../services/userInfoService'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
   const [lastMessageTime, setLastMessageTime] = useState()
+  const [seenInstructions, setSeenInstructions] = useState(true)
+  const [showModalTwo, setShowModalTwo] = useState(false)
+  const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
 
   const userInfoService = new UserInfoService()
 
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
+    getStringValue('seenInstructions').then((res) => {
+      if (res === null) {
+        setSeenInstructions(false)
+      }
+    })
+
     userInfoService
       .GetUserInfo()
       .then((data) => {
@@ -57,10 +71,7 @@ const MainScreen = ({ navigation }) => {
   } else {
     buttonOrMessage = (
       <View style={styles.buttonContainer}>
-        <RevealMessage
-          handlePress={handleMotivatedPress}
-          testID={'motivated'}
-        />
+        <Bear handlePress={handleMotivatedPress} />
       </View>
     )
   }
@@ -69,6 +80,27 @@ const MainScreen = ({ navigation }) => {
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <Header navigation={navigation} showProfile={true} />
+        <TutorialStartModal
+          isVisible={!seenInstructions}
+          handlePress={() => {
+            setSeenInstructions(true)
+            setStringValue('seenInstructions', 'true')
+            setShowModalTwo(true)
+          }}
+        ></TutorialStartModal>
+        <TutorialStep2Modal
+          isVisible={showModalTwo}
+          handlePress={() => {
+            setShowModalTwo(false)
+            setShowModalThree(true)
+          }}
+        ></TutorialStep2Modal>
+        <TutorialStep3Modal
+          isVisible={showModalThree}
+          handlePress={() => {
+            setShowModalThree(false)
+          }}
+        ></TutorialStep3Modal>
         {buttonOrMessage}
         <Button
           title='reset'

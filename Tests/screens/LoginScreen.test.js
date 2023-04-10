@@ -1,5 +1,5 @@
 import React from 'react'
-import { describe, beforeEach, it, expect, jest } from '@jest/globals'
+import { describe, beforeEach, it, expect } from '@jest/globals'
 import { render, screen, fireEvent } from '@testing-library/react-native'
 import LoginScreen from '../../src/screens/LoginScreen'
 import { mockNavigation } from '../mocks/navigation-mock'

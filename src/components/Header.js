@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native'
 import { Ionicons, Feather } from '@expo/vector-icons'
 import Logo from '../components/Logo'
 import PropTypes from 'prop-types'
+import { colors } from '../styles/styles'
 
 const Header = ({ showBack, navigation, showProfile }) => {
   const styles = StyleSheet.create({
@@ -19,32 +20,37 @@ const Header = ({ showBack, navigation, showProfile }) => {
         <Ionicons
           name='ios-arrow-back-outline'
           size={32}
-          color='white'
+          color={colors.accentColor}
           onPress={() => {
             navigation.goBack()
           }}
+          testID='back-button'
         />
       ) : (
-        <Ionicons name='ios-arrow-back-outline' size={32} color='black' />
+        <Ionicons
+          name='ios-arrow-back-outline'
+          size={32}
+          color={colors.backgroundColor}
+          testID='back-button'
+        />
       )}
       <Logo />
       {showProfile ? (
         <Feather
           name='user'
           size={32}
-          color='white'
+          color={colors.accentColor}
           onPress={() => {
             navigation.navigate('Profile')
           }}
+          testID='profile-button'
         />
       ) : (
         <Feather
           name='user'
           size={32}
-          color='black'
-          onPress={() => {
-            navigation.navigate('Profile')
-          }}
+          color={colors.backgroundColor}
+          testID='profile-button'
         />
       )}
     </View>
