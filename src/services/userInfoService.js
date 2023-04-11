@@ -1,35 +1,60 @@
 import { Configuration } from '../client/configuration'
 import { UserInfoApi } from '../client/api'
+import { apiBasePath } from '../../ignore.json'
 
 export class UserInfoService {
-  constructor() {
-    const configParams = {
-      apiKey: undefined,
-      username: undefined,
-      password: undefined,
-      accessToken: undefined,
-      basePath: 'http://10.0.0.65:5229',
-      baseOptions: undefined,
-      formDataCtor: undefined,
-    }
-
-    const config = new Configuration(configParams)
-    this.userInfoApi = new UserInfoApi(config)
+  #configParams = {
+    apiKey: undefined,
+    username: undefined,
+    password: undefined,
+    accessToken: undefined,
+    basePath: apiBasePath,
+    baseOptions: undefined,
+    formDataCtor: undefined,
   }
+
+  #config = new Configuration(this.#configParams)
+  #userInfoApi = new UserInfoApi(this.#config)
 
   /**
    * Gets a user's information
-   * @param {string} user uuid
+   * @param {string} userUuid
    */
-  GetUserInfo(user) {
-    return this.userInfoApi.userInfoGet(user)
+  GetUserInfo(userUuid) {
+    return this.#userInfoApi.userInfoGet(userUuid)
   }
 
   /**
-   * Gets a user's information
-   * @param {UserInfo} userInfo user
+   * Creates a new user
+   * @param {UserInfo} userInfo
    */
   AddUserInfo(userInfo) {
-    return this.userInfoApi.userInfoPost(userInfo)
+    return this.#userInfoApi.userInfoPost(userInfo)
+  }
+
+  /**
+   * Get's a users friends
+   * @param {string} userUuid
+   */
+  GetUserFriends(userUuid) {
+    return this.#userInfoApi.userInfoFriendsGet(userUuid)
+  }
+
+  /**
+   * Add a new friend to a user
+   * @param {string} userUuid user to add friend to
+   * @param {string} friendUuid friend to add
+   */
+  AddFriend(userUuid, friendUuid) {
+    return this.#userInfoApi.userInfoAddFriendPost(userUuid, friendUuid)
+  }
+
+  /**
+   * Removes a friend from a user
+   * @param {string} userUuid user to remove friend from
+   * @param {string} friendUuid friend to remove
+   */
+  RemoveFriend(userUuid, friendUuid) {
+    return this.#userInfoApi.userInfoRemoveFriendPost(userUuid, friendUuid)
   }
 }
