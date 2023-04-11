@@ -32,7 +32,7 @@ describe('Async Storage', () => {
     // Arrange
     const userInfo = { userInfo: '' }
     httpResponse.data = userInfo
-    mockAxios.mockResponseFor(apiBasePath + 'UserInfo', httpResponse, true)
+    mockAxios.mockResponseFor(apiBasePath + 'UserInfo', httpResponse)
 
     // Act
     const result = await service.GetUserInfo('fakeUuid')
