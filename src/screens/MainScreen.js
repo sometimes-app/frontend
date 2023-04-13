@@ -17,6 +17,7 @@ import {
   TutorialStep2Modal,
   TutorialStep3Modal,
 } from '../components/TutorialModals'
+import { UserInfoService } from '../services/userInfoService'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
@@ -26,6 +27,8 @@ const MainScreen = ({ navigation }) => {
   const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
 
+  const userInfoService = new UserInfoService()
+
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
     getStringValue('seenInstructions').then((res) => {
@@ -33,9 +36,18 @@ const MainScreen = ({ navigation }) => {
         setSeenInstructions(false)
       }
     })
+
+    userInfoService
+      .GetUserInfo()
+      .then((data) => {
+        console.log(data.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [])
 
-  const handleMotivatedPress = () => {
+  const handleMotivatedPress = async () => {
     const now = Math.floor(Date.now() / 1000)
     setStringValue('lastMessageTime', now)
     setLastMessageTime(now)
