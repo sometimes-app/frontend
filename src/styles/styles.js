@@ -7,10 +7,12 @@ import { StyleSheet } from 'react-native'
  * @param primaryColor lemonchiffon
  */
 export const colors = {
-  primaryColor: 'lemonchiffon',
+  // primaryColor: 'lemonchiffon',
+  primaryColor: 'white',
   accentColor: 'white',
   backgroundColor: 'black',
   placeholderColor: 'gray',
+  modalBackground: 'rgb(35,35,35)',
 }
 
 export const globalStyle = StyleSheet.create({

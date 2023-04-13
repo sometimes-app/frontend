@@ -7,7 +7,7 @@ import {
   setStringValue,
   removeValue,
 } from '../utils/asyncStorage'
-import { FontAwesome5, EvilIcons } from '@expo/vector-icons'
+import { EvilIcons, Octicons } from '@expo/vector-icons'
 import FadeInAnimatedText from '../components/FadeInAnimatedText'
 import Bear from '../components/Bear'
 import Header from '../components/Header'
@@ -67,7 +67,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header navigation={navigation} showProfile={true} />
+        <Header navigation={navigation} showProfile={true} showFriends={true} />
         <TutorialStartModal
           isVisible={!seenInstructions}
           handlePress={() => {
@@ -103,16 +103,18 @@ const MainScreen = ({ navigation }) => {
               navigation.navigate('Archive')
             }}
           >
-            <EvilIcons name='archive' color='black' size={32} />
+            <EvilIcons name='archive' color={colors.accentColor} size={32} />
             <Text style={styles.previousText}>Message Archive</Text>
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityLabel='write-message'
+            style={styles.newMessage}
             onPress={() => {
-              navigation.navigate('Friends')
+              navigation.navigate('CreateM', { ReceiverId: null })
             }}
           >
-            <FontAwesome5 name='pen-fancy' size={32} color='white' />
+            <Octicons name='pencil' size={24} color='white' />
+            <Text style={styles.newMessageText}>Write Message</Text>
           </TouchableOpacity>
         </View>
         <StatusBar style='light' />
@@ -128,22 +130,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bottomButtons: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 40,
+    marginHorizontal: 20,
   },
   previous: {
-    backgroundColor: colors.primaryColor,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
     display: 'flex',
-    flexDirection: 'row',
+    alignItems: 'center',
   },
   previousText: {
-    fontSize: 20,
-    marginLeft: 10,
+    color: colors.accentColor,
   },
+  newMessage: { display: 'flex', alignItems: 'center' },
+  newMessageText: { color: colors.accentColor },
 })
 
 export default MainScreen

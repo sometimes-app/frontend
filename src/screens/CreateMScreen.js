@@ -14,7 +14,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { suggestedMessages } from '../mockData'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
-import PropTypes from 'prop-types'
+import PropTypes, { checkPropTypes } from 'prop-types'
 
 /**
  * @summary
@@ -25,6 +25,7 @@ const CreateMScreen = ({ navigation, route }) => {
   const { ReceiverId } = route.params
   const inputRef = useRef()
   const [message, setMessage] = useState('')
+  const [receiver, setReceiver] = useState('')
   const [keyboardVisible, setKeyboardVisible] = useState(false)
 
   useEffect(() => {
@@ -66,14 +67,34 @@ const CreateMScreen = ({ navigation, route }) => {
             Keyboard.dismiss()
           }}
         >
+          <View style={{ flexDirection: 'row' }}>
+            <Text
+              style={{
+                color: colors.accentColor,
+                fontSize: 24,
+                marginRight: 4,
+              }}
+            >
+              To:
+            </Text>
+            <TextInput
+              onChangeText={setReceiver}
+              value={receiver}
+              placeholder={'Search'}
+              style={styles.to}
+              keyboardAppearance={'dark'}
+              placeholderTextColor={colors.placeholderColor}
+            />
+          </View>
           <TextInput
             onChangeText={setMessage}
             ref={inputRef}
             value={message}
-            placeholder={'Type your message here'}
+            placeholder={'Everyone is rooting for you...'}
             style={styles.message}
             keyboardAppearance={'dark'}
             multiline={true}
+            placeholderTextColor={colors.placeholderColor}
           />
           <View style={styles.buttons}>
             <TouchableOpacity
@@ -111,13 +132,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flex: 1,
   },
+  to: { fontSize: 24 },
   message: {
     fontSize: 24,
     color: colors.accentColor,
-    borderColor: colors.accentColor,
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
+    // padding: 10,
     flex: 1,
   },
   suggestion: {
