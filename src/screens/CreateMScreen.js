@@ -67,7 +67,7 @@ const CreateMScreen = ({ navigation, route }) => {
             Keyboard.dismiss()
           }}
         >
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', margin: 10 }}>
             <Text
               style={{
                 color: colors.accentColor,
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     color: colors.accentColor,
     // padding: 10,
     flex: 1,
+    margin: 10,
   },
   suggestion: {
     backgroundColor: colors.primaryColor,
