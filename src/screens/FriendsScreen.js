@@ -74,7 +74,10 @@ const FriendsScreen = ({ navigation }) => {
                 <TouchableHighlight
                   style={styles.friendTile}
                   onPress={() => {
-                    navigation.navigate('CreateM', { ReceiverId: item.id })
+                    navigation.navigate('CreateM', {
+                      ReceiverId: item.id,
+                      ReceiverName: item.name,
+                    })
                   }}
                   underlayColor='rgb(50,50,50)'
                   activeOpacity={0.1}

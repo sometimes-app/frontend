@@ -9,12 +9,16 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Pressable,
+  FlatList,
+  TouchableHighlight,
+  Dimensions,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { suggestedMessages } from '../mockData'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
 import PropTypes, { checkPropTypes } from 'prop-types'
+import { friends } from '../mockData'
 
 /**
  * @summary
@@ -22,13 +26,20 @@ import PropTypes, { checkPropTypes } from 'prop-types'
  * @returns
  */
 const CreateMScreen = ({ navigation, route }) => {
-  const { ReceiverId } = route.params
+  const { ReceiverId, ReceiverName } = route.params
   const inputRef = useRef()
+  const searchRef = useRef()
   const [message, setMessage] = useState('')
+  const [search, setSearch] = useState('')
   const [receiver, setReceiver] = useState('')
   const [keyboardVisible, setKeyboardVisible] = useState(false)
 
+  const filteredFriends = friends.filter((friend) =>
+    friend.name.toLowerCase().includes(search.toLowerCase())
+  )
+
   useEffect(() => {
+    if (ReceiverName) setReceiver(ReceiverName)
     setTimeout(() => {
       inputRef.current?.focus()
     }, 550)
@@ -52,6 +63,10 @@ const CreateMScreen = ({ navigation, route }) => {
     const random = Math.floor(Math.random() * suggestedMessages.length)
     setMessage(suggestedMessages[random])
   }
+  const handlePress = (id, name) => {
+    setReceiver(name)
+    setSearch('')
+  }
 
   return (
     <KeyboardAvoidingView behavior='padding' style={globalStyle.background}>
@@ -67,54 +82,114 @@ const CreateMScreen = ({ navigation, route }) => {
             Keyboard.dismiss()
           }}
         >
-          <View style={{ flexDirection: 'row', margin: 10 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginHorizontal: 10,
+              marginVertical: 5,
+              alignItems: 'center',
+            }}
+          >
             <Text
               style={{
                 color: colors.accentColor,
-                fontSize: 24,
-                marginRight: 4,
+                fontSize: 14,
               }}
             >
               To:
             </Text>
-            <TextInput
-              onChangeText={setReceiver}
-              value={receiver}
-              placeholder={'Search'}
-              style={styles.to}
-              keyboardAppearance={'dark'}
-              placeholderTextColor={colors.placeholderColor}
-            />
+            {!receiver ? (
+              <TextInput
+                onChangeText={setSearch}
+                ref={searchRef}
+                value={search}
+                placeholder={'Search'}
+                style={styles.to}
+                keyboardAppearance={'dark'}
+                placeholderTextColor={colors.placeholderColor}
+              />
+            ) : (
+              <Pressable
+                onPress={() => {
+                  setReceiver('')
+                  setTimeout(() => {
+                    searchRef.current?.focus()
+                  }, 550)
+                }}
+                style={styles.receiverContainer}
+              >
+                <Text style={styles.receiver}>{receiver}</Text>
+              </Pressable>
+            )}
           </View>
-          <TextInput
-            onChangeText={setMessage}
-            ref={inputRef}
-            value={message}
-            placeholder={'Everyone is rooting for you...'}
-            style={styles.message}
-            keyboardAppearance={'dark'}
-            multiline={true}
-            placeholderTextColor={colors.placeholderColor}
-          />
-          <View style={styles.buttons}>
-            <TouchableOpacity
-              style={styles.suggestion}
-              onPress={handleSuggestion}
-            >
-              <Text style={{ fontSize: 20 }}>Suggestion</Text>
-            </TouchableOpacity>
-            <FontAwesome
-              name='send'
-              color={'white'}
-              size={22}
-              style={
-                message.length != 0 ? styles.sendActive : styles.sendDisabled
-              }
-              onPress={handleSend}
-              disabled={message.length == 0}
-              testID='sendButton'
+          {!search ? (
+            <>
+              <TextInput
+                onChangeText={setMessage}
+                ref={inputRef}
+                value={message}
+                placeholder={'Everyone is rooting for you...'}
+                style={styles.message}
+                keyboardAppearance={'dark'}
+                multiline={true}
+                placeholderTextColor={colors.placeholderColor}
+              />
+              <View style={styles.buttons}>
+                <TouchableOpacity
+                  style={styles.suggestion}
+                  onPress={handleSuggestion}
+                >
+                  <Text style={{ fontSize: 20 }}>Suggestion</Text>
+                </TouchableOpacity>
+                <FontAwesome
+                  name='send'
+                  color={'white'}
+                  size={22}
+                  style={
+                    message.length != 0
+                      ? styles.sendActive
+                      : styles.sendDisabled
+                  }
+                  onPress={handleSend}
+                  disabled={message.length == 0}
+                  testID='sendButton'
+                />
+              </View>
+            </>
+          ) : (
+            <FlatList
+              data={filteredFriends}
+              // onScroll={() => {
+              //   Keyboard.dismiss()
+              // }}
+              keyboardShouldPersistTaps='handled'
+              keyExtractor={(friend) => friend.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableHighlight
+                  style={styles.friendTile}
+                  onPress={() => {
+                    handlePress(item.id, item.name)
+                  }}
+                  underlayColor='rgb(50,50,50)'
+                  activeOpacity={0.1}
+                  accessibilityLabel={'friend-tile'}
+                >
+                  <>
+                    <View style={styles.initialsContainer}>
+                      <Text style={styles.initials}>
+                        {item.nameFirst[0]}
+                        {item.nameLast[0]}
+                      </Text>
+                    </View>
+                    <View style={{ justifyContent: 'center', marginLeft: 8 }}>
+                      <Text style={styles.friendName}>{item.name}</Text>
+                      <Text style={styles.username}>{item.username}</Text>
+                    </View>
+                  </>
+                </TouchableHighlight>
+              )}
             />
-          </View>
+          )}
         </Pressable>
         <StatusBar style='light' />
       </View>
@@ -132,11 +207,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flex: 1,
   },
-  to: { fontSize: 24 },
+  to: {
+    fontSize: 14,
+    color: colors.accentColor,
+    padding: 5,
+    display: 'flex',
+    flex: 1,
+  },
+  receiverContainer: {
+    backgroundColor: colors.modalBackground,
+    borderRadius: 5,
+    padding: 5,
+    marginLeft: 2,
+  },
+  receiver: { fontSize: 14, color: colors.accentColor },
   message: {
     fontSize: 24,
     color: colors.accentColor,
-    // padding: 10,
     flex: 1,
     margin: 10,
   },
@@ -158,6 +245,35 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 10,
     opacity: 0.2,
+  },
+  friendName: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.accentColor,
+  },
+  listContainer: {},
+  friendTile: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginVertical: 10,
+    backgroundColor: colors.backgroundColor,
+  },
+  initials: {
+    fontSize: 18,
+  },
+  initialsContainer: {
+    borderRadius: 50,
+    backgroundColor: colors.primaryColor,
+    height: Dimensions.get('window').height * 0.05,
+    width: Dimensions.get('window').height * 0.05,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  username: {
+    color: 'rgba(255, 255, 255, 0.75)',
+    fontSize: 12,
+    marginLeft: 2,
   },
 })
 

@@ -122,7 +122,10 @@ const MainScreen = ({ navigation }) => {
             accessibilityLabel='write-message'
             style={styles.newMessage}
             onPress={() => {
-              navigation.navigate('CreateM', { ReceiverId: null })
+              navigation.navigate('CreateM', {
+                ReceiverId: null,
+                ReceiverName: null,
+              })
             }}
           >
             <Octicons name='pencil' size={24} color='white' />
