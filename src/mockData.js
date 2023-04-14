@@ -251,3 +251,76 @@ export const archive = [
     sender: 'Jake',
   },
 ]
+
+export const friendRequests = [
+  {
+    id: 1,
+    nameLast: 'Bearington',
+    nameFirst: 'Bobby',
+    name: 'Bobby Bearington',
+    username: 'BobbyBear123',
+  },
+  {
+    id: 2,
+    nameLast: 'Cub',
+    nameFirst: 'Cindy',
+    name: 'Cindy Cub',
+    username: 'CindyCub456',
+  },
+  {
+    id: 3,
+    nameLast: 'Den',
+    nameFirst: 'Danny',
+    name: 'Danny Den',
+    username: 'DancingDanny',
+  },
+  {
+    id: 4,
+    nameLast: 'Fuzz',
+    nameFirst: 'Freddy',
+    name: 'Freddy Fuzz',
+    username: 'FuzzyFreddy',
+  },
+  {
+    id: 5,
+    nameLast: 'Grizzly',
+    nameFirst: 'Greta',
+    name: 'Greta Grizzly',
+    username: 'GrizzlyBearGreta',
+  },
+  {
+    id: 6,
+    nameLast: 'Honey',
+    nameFirst: 'Hank',
+    name: 'Hank Honey',
+    username: 'HoneyHank',
+  },
+  {
+    id: 7,
+    nameLast: 'Paul',
+    nameFirst: 'Polar',
+    name: 'Paul Polar',
+    username: 'chillyP',
+  },
+  {
+    id: 8,
+    nameLast: 'Kodiak',
+    nameFirst: 'Kelly',
+    name: 'Kelly Kodiak',
+    username: 'KodiakKelly',
+  },
+  {
+    id: 9,
+    nameLast: 'Lazy',
+    nameFirst: 'Larry',
+    name: 'Larry Lazy',
+    username: 'LazyBearLarry',
+  },
+  {
+    id: 10,
+    nameLast: 'Mountain',
+    nameFirst: 'Molly',
+    name: 'Molly Mountain',
+    username: 'MsMountain',
+  },
+]
