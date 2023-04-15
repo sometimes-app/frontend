@@ -9,9 +9,10 @@ import {
   Dimensions,
   TouchableOpacity,
   Keyboard,
+  ScrollView,
 } from 'react-native'
-import { useState } from 'react'
-import { friends } from '../mockData'
+import { useEffect, useState } from 'react'
+import { friendRequests, friends } from '../mockData'
 import { globalStyle, colors } from '../styles/styles'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import Header from '../components/Header'
@@ -23,8 +24,16 @@ const FriendsScreen = ({ navigation }) => {
   const handleSearch = (text) => {
     setSearchQuery(text)
   }
+  const filter = (list) => {
+    return list.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  }
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  const filteredRequests = friendRequests.filter((request) =>
+    request.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   const RightActions = ({ onPress }) => {
@@ -32,7 +41,7 @@ const FriendsScreen = ({ navigation }) => {
       <TouchableOpacity onPress={onPress} style={styles.rightAction}>
         <View>
           <Text style={{ color: colors.accentColor, fontWeight: '500' }}>
-            Remove Friend
+            Remove
           </Text>
         </View>
       </TouchableOpacity>
@@ -49,54 +58,116 @@ const FriendsScreen = ({ navigation }) => {
         <Header showBack={true} navigation={navigation} showProfile={true} />
         <TextInput
           style={styles.searchBar}
-          placeholder='Search friends'
+          placeholder='Search or add friends'
           value={searchQuery}
           onChangeText={handleSearch}
           placeholderTextColor='rgba(255,255,255,.8)'
         />
-        <Text style={{ color: colors.accentColor, marginTop: 15 }}>
-          MY FRIENDS ({friends.length})
-        </Text>
-        <View style={styles.listContainer}>
-          <FlatList
-            data={filteredFriends}
-            onScroll={() => {
-              Keyboard.dismiss()
-            }}
-            keyboardShouldPersistTaps='handled'
-            keyExtractor={(friend) => friend.id.toString()}
-            renderItem={({ item }) => (
-              <Swipeable
-                renderRightActions={() => (
-                  <RightActions onPress={() => console.log('delete', item)} />
-                )}
-              >
-                <TouchableHighlight
-                  style={styles.friendTile}
-                  onPress={() => {
-                    navigation.navigate('CreateM', { ReceiverId: item.id })
+        <ScrollView
+          onScroll={() => {
+            Keyboard.dismiss()
+          }}
+          keyboardShouldPersistTaps='handled'
+        >
+          {filteredRequests.length > 0 && (
+            <View style={{ marginTop: 15, flexDirection: 'row' }}>
+              <Text style={{ color: colors.accentColor, marginRight: 2 }}>
+                REQUESTS
+              </Text>
+              {!searchQuery && (
+                <Text style={{ color: colors.accentColor }}>
+                  ({filteredRequests.length})
+                </Text>
+              )}
+            </View>
+          )}
+          {filteredRequests.map((item) => (
+            <Swipeable
+              renderRightActions={() => (
+                <RightActions onPress={() => console.log('delete', item)} />
+              )}
+              key={item.id}
+            >
+              <View style={styles.friendTile}>
+                <View style={styles.initialsContainer}>
+                  <Text style={styles.initials}>
+                    {item.nameFirst[0]}
+                    {item.nameLast[0]}
+                  </Text>
+                </View>
+                <View style={{ justifyContent: 'center', marginLeft: 8 }}>
+                  <Text style={styles.friendName}>{item.name}</Text>
+                  <Text style={styles.username}>{item.username}</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
                   }}
-                  underlayColor='rgb(50,50,50)'
-                  activeOpacity={0.1}
-                  accessibilityLabel={'friend-tile'}
                 >
-                  <>
-                    <View style={styles.initialsContainer}>
-                      <Text style={styles.initials}>
-                        {item.nameFirst[0]}
-                        {item.nameLast[0]}
-                      </Text>
-                    </View>
-                    <View style={{ justifyContent: 'center', marginLeft: 8 }}>
-                      <Text style={styles.friendName}>{item.name}</Text>
-                      <Text style={styles.username}>{item.username}</Text>
-                    </View>
-                  </>
-                </TouchableHighlight>
-              </Swipeable>
-            )}
-          />
-        </View>
+                  <View
+                    style={{
+                      backgroundColor: colors.modalBackground,
+                      padding: 8,
+                      borderRadius: 20,
+                      alignSelf: 'flex-end',
+                      marginRight: 5,
+                    }}
+                  >
+                    <Text style={{ color: colors.accentColor }}>Add</Text>
+                  </View>
+                </View>
+              </View>
+            </Swipeable>
+          ))}
+          {filteredFriends.length > 0 && (
+            <View style={{ marginTop: 15, flexDirection: 'row' }}>
+              <Text style={{ color: colors.accentColor, marginRight: 2 }}>
+                MY FRIENDS
+              </Text>
+              {!searchQuery && (
+                <Text style={{ color: colors.accentColor }}>
+                  ({filteredFriends.length})
+                </Text>
+              )}
+            </View>
+          )}
+          {filteredFriends.map((item) => (
+            <Swipeable
+              renderRightActions={() => (
+                <RightActions onPress={() => console.log('delete', item)} />
+              )}
+              key={item.id}
+              keyboardShouldPersistTaps='handled'
+            >
+              <TouchableHighlight
+                style={styles.friendTile}
+                onPress={() => {
+                  navigation.navigate('CreateM', {
+                    ReceiverId: item.id,
+                    ReceiverName: item.name,
+                  })
+                }}
+                underlayColor='rgb(50,50,50)'
+                activeOpacity={0.1}
+                accessibilityLabel={'friend-tile'}
+              >
+                <>
+                  <View style={styles.initialsContainer}>
+                    <Text style={styles.initials}>
+                      {item.nameFirst[0]}
+                      {item.nameLast[0]}
+                    </Text>
+                  </View>
+                  <View style={{ justifyContent: 'center', marginLeft: 8 }}>
+                    <Text style={styles.friendName}>{item.name}</Text>
+                    <Text style={styles.username}>{item.username}</Text>
+                  </View>
+                </>
+              </TouchableHighlight>
+            </Swipeable>
+          ))}
+        </ScrollView>
         <StatusBar style='light' />
       </View>
     </View>
@@ -120,11 +191,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.accentColor,
   },
-  listContainer: {},
   friendTile: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     marginVertical: 10,
     backgroundColor: colors.backgroundColor,
   },

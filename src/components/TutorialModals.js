@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, Pressable, Modal } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
 import { colors } from '../styles/styles'
 import PropTypes from 'prop-types'
 
@@ -7,27 +6,20 @@ export const TutorialStartModal = ({ isVisible, handlePress }) => {
   return (
     <>
       <Modal visible={isVisible} animationType='fade' transparent={true}>
-        <View style={modalStyles.flexView}>
-          <View style={modalStyles.modalViewOne}>
-            <Text>
+        <Pressable
+          testID='tutorialModal1Press'
+          onPress={(event) => {
+            handlePress(event)
+          }}
+          style={styles.pressStyle}
+        >
+          <View style={styles.modalView}>
+            <Text style={styles.textStyle}>
               Welcome to Sometimes! A place to go when you need a wholesome pick
               me up.
             </Text>
-            <Pressable
-              testID='tutorialModal1Press'
-              onPress={(event) => {
-                handlePress(event)
-              }}
-            >
-              <MaterialIcons
-                name='keyboard-arrow-right'
-                size={28}
-                color={colors.backgroundColor}
-                style={{ alignSelf: 'flex-end' }}
-              />
-            </Pressable>
           </View>
-        </View>
+        </Pressable>
       </Modal>
     </>
   )
@@ -37,27 +29,20 @@ export const TutorialStep2Modal = ({ isVisible, handlePress }) => {
   return (
     <>
       <Modal visible={isVisible} animationType='fade' transparent={true}>
-        <View style={modalStyles.flexView}>
-          <View style={modalStyles.modalViewTwo}>
-            <Text>
+        <Pressable
+          testID='tutorialModal2Press'
+          onPress={(event) => {
+            handlePress(event)
+          }}
+          style={styles.pressStyle}
+        >
+          <View style={styles.modalView}>
+            <Text style={styles.textStyle}>
               Tap the sleeping bear to reveal some kind words from a friend or
               loved one.
             </Text>
-            <Pressable
-              testID='tutorialModal2Press'
-              onPress={(event) => {
-                handlePress(event)
-              }}
-            >
-              <MaterialIcons
-                name='keyboard-arrow-right'
-                size={28}
-                color={colors.backgroundColor}
-                style={{ alignSelf: 'flex-end' }}
-              />
-            </Pressable>
           </View>
-        </View>
+        </Pressable>
       </Modal>
     </>
   )
@@ -67,36 +52,20 @@ export const TutorialStep3Modal = ({ isVisible, handlePress }) => {
   return (
     <>
       <Modal visible={isVisible} animationType='fade' transparent={true}>
-        <View style={modalStyles.flexView}>
-          <View style={modalStyles.modalViewThree}>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: colors.accentColor,
-                borderRadius: 20,
-                padding: 15,
-              }}
-            >
-              <Text>
-                After 24 hours the bear goes back to sleep and you can reveal
-                another message when you need it!
-              </Text>
-              <Pressable
-                testID='tutorialModal3Press'
-                onPress={(event) => {
-                  handlePress(event)
-                }}
-              >
-                <MaterialIcons
-                  name='close'
-                  size={22}
-                  color={colors.backgroundColor}
-                  style={{ alignSelf: 'flex-end' }}
-                />
-              </Pressable>
-            </View>
+        <Pressable
+          testID='tutorialModal3Press'
+          onPress={(event) => {
+            handlePress(event)
+          }}
+          style={styles.pressStyle}
+        >
+          <View style={styles.modalView}>
+            <Text style={styles.textStyle}>
+              After 24 hours the bear goes back to sleep and you can reveal
+              another message when you need it!
+            </Text>
           </View>
-        </View>
+        </Pressable>
       </Modal>
     </>
   )
@@ -113,35 +82,28 @@ TutorialStep2Modal.propTypes = TutorialPropTypes
 
 TutorialStep3Modal.propTypes = TutorialPropTypes
 
-const modalStyles = StyleSheet.create({
-  flexView: {
+const styles = StyleSheet.create({
+  pressStyle: {
+    display: 'flex',
     flex: 1,
   },
-  modalViewOne: {
-    alignSelf: 'flex-end',
-    top: '15%',
-    right: '5%',
+  modalView: {
+    alignSelf: 'center',
+    top: '20%',
+    // right: '5%',
     maxWidth: '80%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    paddingBottom: 2,
+    backgroundColor: colors.modalBackground,
+    borderRadius: 15,
+    padding: 12,
+    // paddingTop: 15,
+    // paddingBottom: 2,
+    borderColor: colors.primaryColor,
+    borderWidth: 2,
   },
-  modalViewTwo: {
-    top: '15%',
-    left: '5%',
-    maxWidth: '80%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    paddingBottom: 2,
-  },
-  modalViewThree: {
-    alignSelf: 'flex-end',
-    top: '65%',
-    right: '5%',
-    maxWidth: '80%',
+  textStyle: {
+    color: colors.primaryColor,
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '300',
   },
 })

@@ -4,7 +4,7 @@ import Logo from '../components/Logo'
 import PropTypes from 'prop-types'
 import { colors } from '../styles/styles'
 
-const Header = ({ showBack, navigation, showProfile }) => {
+const Header = ({ showBack, navigation, showProfile, showFriends }) => {
   const styles = StyleSheet.create({
     header: {
       flexDirection: 'row',
@@ -13,33 +13,51 @@ const Header = ({ showBack, navigation, showProfile }) => {
     },
   })
 
+  let leftButton
+
+  if (showBack) {
+    leftButton = (
+      <Ionicons
+        name='ios-arrow-back-outline'
+        size={32}
+        color={colors.primaryColor}
+        onPress={() => {
+          navigation.goBack()
+        }}
+        testID='back-button'
+      />
+    )
+  } else if (showFriends) {
+    leftButton = (
+      <Feather
+        name='users'
+        size={32}
+        color={colors.primaryColor}
+        onPress={() => navigation.navigate('Friends')}
+        testID='friends-button'
+      />
+    )
+  } else {
+    leftButton = (
+      <Ionicons
+        name='ios-arrow-back-outline'
+        size={32}
+        color={colors.backgroundColor}
+        testID='back-button'
+      />
+    )
+  }
+
   // When reduce motion is on the screen flashes white and black on the back btn
   return (
     <View style={styles.header}>
-      {showBack ? (
-        <Ionicons
-          name='ios-arrow-back-outline'
-          size={32}
-          color={colors.accentColor}
-          onPress={() => {
-            navigation.goBack()
-          }}
-          testID='back-button'
-        />
-      ) : (
-        <Ionicons
-          name='ios-arrow-back-outline'
-          size={32}
-          color={colors.backgroundColor}
-          testID='back-button'
-        />
-      )}
+      {leftButton}
       <Logo />
       {showProfile ? (
         <Feather
           name='user'
           size={32}
-          color={colors.accentColor}
+          color={colors.primaryColor}
           onPress={() => {
             navigation.navigate('Profile')
           }}
@@ -60,11 +78,13 @@ const Header = ({ showBack, navigation, showProfile }) => {
 Header.propTypes = {
   showBack: PropTypes.bool,
   showProfile: PropTypes.bool,
+  showFriends: PropTypes.bool,
 }
 
 Header.defaultProps = {
   showBack: false,
   showProfile: false,
+  showFriends: false,
 }
 
 export default Header
