@@ -101,7 +101,6 @@ const FriendsScreen = ({ navigation }) => {
                 </View>
                 <View
                   style={{
-                    // backgroundColor: 'red',
                     flex: 1,
                     justifyContent: 'center',
                   }}
@@ -168,47 +167,6 @@ const FriendsScreen = ({ navigation }) => {
               </TouchableHighlight>
             </Swipeable>
           ))}
-          {/* <FlatList
-            data={filteredFriends}
-            onScroll={() => {
-              Keyboard.dismiss()
-            }}
-            keyboardShouldPersistTaps='handled'
-            keyExtractor={(friend) => friend.id.toString()}
-            renderItem={({ item }) => (
-              <Swipeable
-                renderRightActions={() => (
-                  <RightActions onPress={() => console.log('delete', item)} />
-                )}
-              >
-                <TouchableHighlight
-                  style={styles.friendTile}
-                  onPress={() => {
-                    navigation.navigate('CreateM', {
-                      ReceiverId: item.id,
-                      ReceiverName: item.name,
-                    })
-                  }}
-                  underlayColor='rgb(50,50,50)'
-                  activeOpacity={0.1}
-                  accessibilityLabel={'friend-tile'}
-                >
-                  <>
-                    <View style={styles.initialsContainer}>
-                      <Text style={styles.initials}>
-                        {item.nameFirst[0]}
-                        {item.nameLast[0]}
-                      </Text>
-                    </View>
-                    <View style={{ justifyContent: 'center', marginLeft: 8 }}>
-                      <Text style={styles.friendName}>{item.name}</Text>
-                      <Text style={styles.username}>{item.username}</Text>
-                    </View>
-                  </>
-                </TouchableHighlight>
-              </Swipeable>
-            )}
-          /> */}
         </ScrollView>
         <StatusBar style='light' />
       </View>
@@ -236,7 +194,6 @@ const styles = StyleSheet.create({
   friendTile: {
     display: 'flex',
     flexDirection: 'row',
-    // justifyContent: 'flex-end',
     marginVertical: 10,
     backgroundColor: colors.backgroundColor,
   },
