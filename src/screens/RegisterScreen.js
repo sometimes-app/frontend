@@ -13,7 +13,7 @@ import { colors, globalStyle } from '../styles/styles'
 import Header from '../components/Header'
 
 /** Register Screen */
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -28,7 +28,7 @@ const RegisterScreen = ({ navigation }) => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header showBack={true} navigation={navigation} showProfile={false} />
+        <Header showBack={true} showProfile={false} />
         <Text style={styles.titleText}>Create an account</Text>
         <TextInput
           style={styles.email}

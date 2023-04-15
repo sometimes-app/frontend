@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 describe('Register Screen', () => {
   beforeEach(() => {
-    render(<RegisterScreen navigation={mockNavigation} />)
+    render(<RegisterScreen />)
   })
   it('should press register', () => {
     fireEvent.press(screen.getByText('Sign Up'))

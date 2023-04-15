@@ -5,7 +5,7 @@ import { describe, beforeEach, it, expect } from '@jest/globals'
 
 describe('CreateMScreen', () => {
   beforeEach(() => {
-    render(<FriendsScreen navigation={mockNavigation} />)
+    render(<FriendsScreen />)
   })
   it('should search friends', () => {
     const beforeSearch = screen.queryAllByLabelText('friend-tile')

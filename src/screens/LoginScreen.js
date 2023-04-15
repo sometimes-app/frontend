@@ -11,10 +11,13 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { authentication } from '../../firebaseConfig'
 import { globalStyle, colors } from '../styles/styles'
 import Header from '../components/Header'
+import { useNavigation } from '@react-navigation/native'
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const navigation = useNavigation()
 
   const SignInUser = () => {
     signInWithEmailAndPassword(authentication, email, password).catch((err) => {
@@ -25,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header showBack={true} navigation={navigation} showProfile={false} />
+        <Header showBack={true} showProfile={false} />
         <Text style={styles.titleText}>Login</Text>
         <TextInput
           style={styles.email}

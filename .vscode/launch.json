@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "name": "Debug Direct iOS - Experimental",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "platform": "ios",
+      "useHermesEngine": false,
+      "target": "device"
+    }
+  ]
+}

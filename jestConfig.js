@@ -28,3 +28,16 @@ jest.mock('../frontend/firebaseConfig', () => {
     authentication: {},
   }
 })
+
+jest.mock('@react-navigation/native', () => {
+  const actualNav = jest.requireActual('@react-navigation/native')
+  return {
+    ...actualNav,
+    useNavigation: () => ({
+      navigate: jest.fn(function (navigate) {
+        return navigate
+      }),
+      goBack: jest.fn(),
+    }),
+  }
+})

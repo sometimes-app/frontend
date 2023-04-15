@@ -6,7 +6,7 @@ import { describe, beforeEach, it, expect } from '@jest/globals'
 
 describe('CreateMScreen', () => {
   beforeEach(() => {
-    render(<CreateMScreen navigation={mockNavigation} route={mockRoute} />)
+    render(<CreateMScreen route={mockRoute} />)
   })
   it('should press suggestion', () => {
     fireEvent.press(screen.getByText('Suggestion'))
