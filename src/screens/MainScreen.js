@@ -17,7 +17,7 @@ import {
   TutorialStep2Modal,
   TutorialStep3Modal,
 } from '../components/TutorialModals'
-import { UserInfoService } from '../services/userInfoService'
+import { GetUserInfoService } from '../contexts'
 
 /** Screen where messages are seen. */
 const MainScreen = ({ navigation }) => {
@@ -27,7 +27,7 @@ const MainScreen = ({ navigation }) => {
   const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
 
-  const userInfoService = new UserInfoService()
+  const userInfoService = GetUserInfoService()
 
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
