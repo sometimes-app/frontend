@@ -38,15 +38,6 @@ const MainScreen = () => {
         setSeenInstructions(false)
       }
     })
-
-    userInfoService
-      .GetUserInfo()
-      .then((data) => {
-        console.log(data.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
   }, [])
 
   const handleMotivatedPress = async () => {

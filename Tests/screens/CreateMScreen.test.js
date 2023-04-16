@@ -9,14 +9,16 @@ describe('CreateMScreen', () => {
     render(<CreateMScreen route={mockRoute} />)
   })
   it('should press suggestion', () => {
+    const messageBox = screen.getByPlaceholderText(
+      'Everyone is rooting for you...'
+    )
     fireEvent.press(screen.getByText('Suggestion'))
-    const messageBox = screen.getByPlaceholderText('Type your message here')
     expect(messageBox.value).not.toBe('')
   })
   it('should navigate to main on send', () => {
     fireEvent.changeText(
-      screen.getByPlaceholderText('Type your message here'),
-      'test'
+      screen.getByPlaceholderText('Everyone is rooting for you...'),
+      'my custom message'
     )
     fireEvent.press(screen.getByTestId('sendButton'))
     expect(mockNavigation.navigate).toBeCalledWith('Main')

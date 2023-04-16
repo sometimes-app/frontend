@@ -1,5 +1,6 @@
 import { Configuration } from '../client/configuration'
-import { UserInfoApi } from '../client/api'
+// eslint-disable-next-line no-unused-vars
+import { UserInfoApi, UserInfo } from '../client/api'
 import { apiBasePath } from '../../ignore.json'
 
 export class UserInfoService {

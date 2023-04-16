@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prettify": "prettier --write .",
-    "test": "jest ./Tests"
+    "test": "jest ./Tests",
+    "test-debug": "jest ./Tests --watch --debug"
   },
   "jest": {
     "preset": "jest-expo",

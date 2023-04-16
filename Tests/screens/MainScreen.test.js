@@ -20,7 +20,10 @@ describe('MainScreen', () => {
     await waitFor(() => {
       fireEvent.press(screen.getByLabelText('write-message'))
     })
-    expect(mockNavigation.navigate).toBeCalledWith('Friends')
+    expect(mockNavigation.navigate).toBeCalledWith('CreateM', {
+      ReceiverId: null,
+      ReceiverName: null,
+    })
   })
 
   describe('Tutorial', () => {
