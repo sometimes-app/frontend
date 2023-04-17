@@ -32,7 +32,14 @@ const ProfileScreen = () => {
     }
   }, [user])
 
-  if (!userInfo) return null
+  if (!userInfo)
+    return (
+      <View style={globalStyle.background}>
+        <View style={globalStyle.container}>
+          <Header showBack={true} />
+        </View>
+      </View>
+    )
 
   return (
     <View style={globalStyle.background}>

@@ -12,6 +12,7 @@ import {
   FlatList,
   TouchableHighlight,
   Dimensions,
+  Image,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { suggestedMessages } from '../mockData'
@@ -20,6 +21,8 @@ import { globalStyle, colors } from '../styles/styles'
 import PropTypes from 'prop-types'
 import { friends } from '../mockData'
 import { useNavigation } from '@react-navigation/native'
+import { GetUserInfoService } from '../contexts'
+import useAuthentication from '../utils/useAuthentication'
 
 /**
  * @summary
@@ -34,12 +37,29 @@ const CreateMScreen = ({ route }) => {
   const [search, setSearch] = useState('')
   const [receiver, setReceiver] = useState('')
   const [keyboardVisible, setKeyboardVisible] = useState(false)
+  const [friends, setFriends] = useState([])
 
   const navigation = useNavigation()
+  const userInfoService = GetUserInfoService()
+  const { user } = useAuthentication()
 
-  const filteredFriends = friends.filter((friend) =>
-    friend.name.toLowerCase().includes(search.toLowerCase())
-  )
+  const filteredFriends = friends.filter((friend) => {
+    if (friend.firstName.toLowerCase().includes(search.toLowerCase()))
+      return true
+    if (friend.lastName.toLowerCase().includes(search.toLowerCase()))
+      return true
+    if (friend.userName.toLowerCase().includes(search.toLowerCase()))
+      return true
+    if (friend.name.toLowerCase().includes(search.toLowerCase())) return true
+  })
+
+  const tempFormat = (friends) => {
+    return friends.map((friend, index) => {
+      friend.name = friend.firstName + ' ' + friend.lastName
+      friend.id = index
+      return friend
+    })
+  }
 
   useEffect(() => {
     if (ReceiverName) setReceiver(ReceiverName)
@@ -47,6 +67,18 @@ const CreateMScreen = ({ route }) => {
       inputRef.current?.focus()
     }, 550)
   }, [])
+
+  useEffect(() => {
+    if (user) {
+      userInfoService
+        .GetUserFriends(user.uid)
+        .then((res) => setFriends(tempFormat(res.data)))
+    }
+  }, [user])
+
+  useEffect(() => {
+    console.log(friends)
+  }, [friends])
 
   Keyboard.addListener('keyboardDidHide', () => {
     setKeyboardVisible(false)
@@ -176,15 +208,24 @@ const CreateMScreen = ({ route }) => {
                   accessibilityLabel={'friend-tile'}
                 >
                   <>
-                    <View style={styles.initialsContainer}>
-                      <Text style={styles.initials}>
-                        {item.nameFirst[0]}
-                        {item.nameLast[0]}
-                      </Text>
-                    </View>
+                    {item.profilePicUrl ? (
+                      <Image
+                        source={{
+                          uri: item.profilePicUrl,
+                        }}
+                        style={styles.initialsContainer}
+                      />
+                    ) : (
+                      <View style={styles.initialsContainer}>
+                        <Text style={styles.initials}>
+                          {item.firstName[0]}
+                          {item.lastName[0]}
+                        </Text>
+                      </View>
+                    )}
                     <View style={{ justifyContent: 'center', marginLeft: 8 }}>
                       <Text style={styles.friendName}>{item.name}</Text>
-                      <Text style={styles.username}>{item.username}</Text>
+                      <Text style={styles.username}>{item.userName}</Text>
                     </View>
                   </>
                 </TouchableHighlight>
