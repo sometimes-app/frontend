@@ -5,6 +5,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  Image,
 } from 'react-native'
 import { authentication } from '../../firebaseConfig'
 import { signOut } from 'firebase/auth'
@@ -25,29 +26,37 @@ const ProfileScreen = () => {
       userInfoService
         .GetUserInfo(user.uid)
         .then((res) => {
-          console.log(res)
-          setUserInfo(res)
+          setUserInfo(res.data)
         })
         .catch((err) => console.error(err))
     }
   }, [user])
-  useEffect(() => {
-    if (user) {
-      // console.log(typeof user['uid'])
-      // console.log(user)
-      // console.log(user['uid'])
-    }
-  }, [user])
+
+  if (!userInfo) return null
 
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <Header showBack={true} />
-        <View style={styles.profilePhoto}>
-          <Text style={styles.initials}>JD</Text>
-        </View>
-        <Text style={styles.name}>John Doe</Text>
-        <Text style={styles.username}>john321</Text>
+        {userInfo.profilePicUrl ? (
+          <Image
+            source={{
+              uri: userInfo.profilePicUrl,
+            }}
+            style={styles.profilePhoto}
+          />
+        ) : (
+          <View style={styles.profilePhoto}>
+            <Text style={styles.initials}>
+              {userInfo.firstName[0]}
+              {userInfo.lastName[0]}
+            </Text>
+          </View>
+        )}
+        <Text style={styles.name}>
+          {userInfo.firstName} {userInfo.lastName}
+        </Text>
+        <Text style={styles.username}>{userInfo.userName}</Text>
         <TouchableOpacity
           style={styles.signOut}
           onPress={() => signOut(authentication)}
