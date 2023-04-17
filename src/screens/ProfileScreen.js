@@ -11,10 +11,33 @@ import { signOut } from 'firebase/auth'
 import useAuthentication from '../utils/useAuthentication'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
+import { GetUserInfoService } from '../contexts'
+import { useEffect, useState } from 'react'
 
 /** Screen where the profile can be viewed. */
 const ProfileScreen = () => {
-  useAuthentication()
+  const { user } = useAuthentication()
+  const userInfoService = GetUserInfoService()
+  const [userInfo, setUserInfo] = useState()
+
+  useEffect(() => {
+    if (user) {
+      userInfoService
+        .GetUserInfo(user.uid)
+        .then((res) => {
+          console.log(res)
+          setUserInfo(res)
+        })
+        .catch((err) => console.error(err))
+    }
+  }, [user])
+  useEffect(() => {
+    if (user) {
+      // console.log(typeof user['uid'])
+      // console.log(user)
+      // console.log(user['uid'])
+    }
+  }, [user])
 
   return (
     <View style={globalStyle.background}>
