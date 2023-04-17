@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
   TextInput,
   TouchableHighlight,
   Dimensions,
@@ -11,15 +10,18 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { friendRequests, friends } from '../mockData'
 import { globalStyle, colors } from '../styles/styles'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import Header from '../components/Header'
+import { useNavigation } from '@react-navigation/native'
 
 import PropTypes from 'prop-types'
 
-const FriendsScreen = ({ navigation }) => {
+const FriendsScreen = () => {
+  const navigation = useNavigation()
+
   const [searchQuery, setSearchQuery] = useState('')
   const handleSearch = (text) => {
     setSearchQuery(text)

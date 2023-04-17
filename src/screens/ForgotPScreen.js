@@ -12,7 +12,7 @@ import { authentication } from '../../firebaseConfig'
 import { globalStyle, colors } from '../styles/styles'
 import Header from '../components/Header'
 
-const ForgotScreen = ({ navigation }) => {
+const ForgotScreen = () => {
   const [email, setEmail] = useState('')
 
   const handleReset = () => {
@@ -24,7 +24,7 @@ const ForgotScreen = ({ navigation }) => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header showBack={true} navigation={navigation} showProfile={false} />
+        <Header showBack={true} showProfile={false} />
         <Text style={styles.titleText}>Reset Password</Text>
         <TextInput
           style={styles.email}

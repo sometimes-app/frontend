@@ -6,7 +6,7 @@ import { archive } from '../../src/mockData'
 
 describe('Archive Screen', () => {
   beforeEach(() => {
-    render(<ArchiveScreen navigation={mockNavigation} />)
+    render(<ArchiveScreen/>)
   })
   it('renders a message from the archive', () => {
     const message = archive[0].message

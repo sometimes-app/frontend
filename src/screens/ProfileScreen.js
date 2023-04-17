@@ -13,12 +13,13 @@ import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
 
 /** Screen where the profile can be viewed. */
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   useAuthentication()
+
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header navigation={navigation} showBack={true} />
+        <Header showBack={true} />
         <View style={styles.profilePhoto}>
           <Text style={styles.initials}>JD</Text>
         </View>

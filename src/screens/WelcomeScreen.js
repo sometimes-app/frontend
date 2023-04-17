@@ -2,9 +2,11 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import FadeInAnimatedText from '../components/FadeInAnimatedText'
 import { globalStyle } from '../styles/styles'
+import { useNavigation } from '@react-navigation/native'
 
 /** Screen to pick a profile or create one. */
-const WelcomeScreen = ({ navigation }) => {
+const WelcomeScreen = () => {
+  const navigation = useNavigation()
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>

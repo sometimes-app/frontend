@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 
 describe('Login', () => {
   beforeEach(() => {
-    render(<LoginScreen navigation={mockNavigation} />)
+    render(<LoginScreen />)
   })
 
   it('should press Forgot Password', () => {

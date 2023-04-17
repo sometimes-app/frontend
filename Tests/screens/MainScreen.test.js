@@ -13,21 +13,24 @@ import { getStringValue, setStringValue } from '../../src/utils/asyncStorage'
 describe('MainScreen', () => {
   beforeEach(async () => {
     await waitFor(() => {
-      render(<MainScreen navigation={mockNavigation} />)
+      render(<MainScreen />)
     })
   })
   it('should navigate to friends', async () => {
     await waitFor(() => {
       fireEvent.press(screen.getByLabelText('write-message'))
     })
-    expect(mockNavigation.navigate).toBeCalledWith('Friends')
+    expect(mockNavigation.navigate).toBeCalledWith('CreateM', {
+      ReceiverId: null,
+      ReceiverName: null,
+    })
   })
 
   describe('Tutorial', () => {
     beforeEach(async () => {
       AsyncStorage.clear()
       await waitFor(() => {
-        render(<MainScreen navigation={mockNavigation} />)
+        render(<MainScreen />)
       })
     })
 
@@ -41,7 +44,7 @@ describe('MainScreen', () => {
       setStringValue('seenInstructions', 'true')
       let tutorialModal
       await waitFor(() => {
-        render(<MainScreen navigation={mockNavigation} />)
+        render(<MainScreen />)
       })
       await waitFor(() => {
         tutorialModal = screen.queryByText(/Welcome to Sometimes!/i)

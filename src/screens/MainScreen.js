@@ -17,17 +17,19 @@ import {
   TutorialStep2Modal,
   TutorialStep3Modal,
 } from '../components/TutorialModals'
-import { UserInfoService } from '../services/userInfoService'
+import { GetUserInfoService } from '../contexts'
+import { useNavigation } from '@react-navigation/native'
 
 /** Screen where messages are seen. */
-const MainScreen = ({ navigation }) => {
+const MainScreen = () => {
   const [lastMessageTime, setLastMessageTime] = useState()
   const [seenInstructions, setSeenInstructions] = useState(true)
   const [showModalTwo, setShowModalTwo] = useState(false)
   const [showModalThree, setShowModalThree] = useState(false)
   useAuthentication()
 
-  const userInfoService = new UserInfoService()
+  const navigation = useNavigation()
+  const userInfoService = GetUserInfoService()
 
   useEffect(() => {
     getStringValue('lastMessageTime').then((res) => setLastMessageTime(res))
@@ -36,15 +38,6 @@ const MainScreen = ({ navigation }) => {
         setSeenInstructions(false)
       }
     })
-
-    userInfoService
-      .GetUserInfo()
-      .then((data) => {
-        console.log(data.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
   }, [])
 
   const handleMotivatedPress = async () => {
@@ -79,7 +72,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header navigation={navigation} showProfile={true} showFriends={true} />
+        <Header showProfile={true} showFriends={true} />
         <TutorialStartModal
           isVisible={!seenInstructions}
           handlePress={() => {

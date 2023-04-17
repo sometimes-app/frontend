@@ -11,12 +11,12 @@ import { globalStyle, colors } from '../styles/styles'
 import { archive } from '../mockData'
 const { width } = Dimensions.get('screen')
 
-const ArchiveScreen = ({ navigation }) => {
+const ArchiveScreen = () => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
         <StatusBar style='light' />
-        <Header navigation={navigation} showProfile={true} showBack={true} />
+        <Header showProfile={true} showBack={true} />
         <FlatList
           data={archive}
           horizontal

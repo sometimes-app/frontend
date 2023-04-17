@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth'
 
 describe('Profile', () => {
   beforeEach(() => {
-    render(<ProfileScreen navigation={mockNavigation} />)
+    render(<ProfileScreen />)
   })
 
   it('should sign out', () => {

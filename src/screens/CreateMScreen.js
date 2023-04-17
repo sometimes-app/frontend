@@ -17,15 +17,16 @@ import { FontAwesome } from '@expo/vector-icons'
 import { suggestedMessages } from '../mockData'
 import Header from '../components/Header'
 import { globalStyle, colors } from '../styles/styles'
-import PropTypes, { checkPropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { friends } from '../mockData'
+import { useNavigation } from '@react-navigation/native'
 
 /**
  * @summary
  * @param {} param0
  * @returns
  */
-const CreateMScreen = ({ navigation, route }) => {
+const CreateMScreen = ({ route }) => {
   const { ReceiverId, ReceiverName } = route.params
   const inputRef = useRef()
   const searchRef = useRef()
@@ -33,6 +34,8 @@ const CreateMScreen = ({ navigation, route }) => {
   const [search, setSearch] = useState('')
   const [receiver, setReceiver] = useState('')
   const [keyboardVisible, setKeyboardVisible] = useState(false)
+
+  const navigation = useNavigation()
 
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(search.toLowerCase())
@@ -55,11 +58,9 @@ const CreateMScreen = ({ navigation, route }) => {
 
   const handleSend = () => {
     navigation.navigate('Main')
-    // console.log(ReceiverId)
   }
 
   const handleSuggestion = () => {
-    // console.log(suggestedMessages)
     const random = Math.floor(Math.random() * suggestedMessages.length)
     setMessage(suggestedMessages[random])
   }
@@ -71,7 +72,7 @@ const CreateMScreen = ({ navigation, route }) => {
   return (
     <KeyboardAvoidingView behavior='padding' style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header navigation={navigation} showBack={true} showProfile={true} />
+        <Header showBack={true} showProfile={true} />
         <Pressable
           style={
             keyboardVisible

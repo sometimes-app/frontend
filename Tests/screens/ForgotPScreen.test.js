@@ -6,7 +6,7 @@ import { sendPasswordResetEmail } from 'firebase/auth'
 
 describe('CreateMScreen', () => {
   beforeEach(() => {
-    render(<ForgotScreen navigation={mockNavigation} />)
+    render(<ForgotScreen />)
   })
   it('should press reset', () => {
     fireEvent.press(screen.getByText('Reset'))

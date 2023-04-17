@@ -5,11 +5,14 @@ import { describe, beforeEach, it, expect } from '@jest/globals'
 
 describe('CreateMScreen', () => {
   beforeEach(() => {
-    render(<FriendsScreen navigation={mockNavigation} />)
+    render(<FriendsScreen />)
   })
   it('should search friends', () => {
     const beforeSearch = screen.queryAllByLabelText('friend-tile')
-    fireEvent.changeText(screen.getByPlaceholderText('Search friends'), 'john')
+    fireEvent.changeText(
+      screen.getByPlaceholderText('Search or add friends'),
+      'john'
+    )
     const afterSearch = screen.queryAllByLabelText('friend-tile')
     expect(afterSearch.length).toBeLessThan(beforeSearch.length)
   })
