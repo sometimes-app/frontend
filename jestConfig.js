@@ -25,6 +25,12 @@ jest.mock('firebase/auth', () => {
   }
 })
 
+jest.mock('./ignore.json', () => {
+  return {
+    apiBasePath: 'http://localhost:8080',
+  }
+})
+
 jest.mock('../frontend/firebaseConfig', () => {
   return {
     authentication: {},
