@@ -3,8 +3,10 @@ import { Ionicons, Feather } from '@expo/vector-icons'
 import Logo from '../components/Logo'
 import PropTypes from 'prop-types'
 import { colors } from '../styles/styles'
+import { useNavigation } from '@react-navigation/native'
 
-const Header = ({ showBack, navigation, showProfile, showFriends }) => {
+const Header = ({ showBack, showProfile, showFriends }) => {
+  const navigation = useNavigation()
   const styles = StyleSheet.create({
     header: {
       flexDirection: 'row',
