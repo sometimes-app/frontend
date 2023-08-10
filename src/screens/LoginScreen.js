@@ -28,7 +28,7 @@ const LoginScreen = () => {
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header showBack={true} showProfile={false} />
+        <Header showBack={true} navigation={navigation} showProfile={false} />
         <Text style={styles.titleText}>Login</Text>
         <TextInput
           style={styles.email}
