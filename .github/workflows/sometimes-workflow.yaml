@@ -1,0 +1,32 @@
+name: Sometimes
+run-name: ${{ github.actor }} build
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull-request:
+    branches:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: sometimes-node-modules
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: sometimes-node-modules
+      - run: npm run test
