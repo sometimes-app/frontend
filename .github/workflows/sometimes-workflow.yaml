@@ -1,13 +1,6 @@
 name: Sometimes
 run-name: ${{ github.actor }} build
-on:
-  push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      - '*'
+on: [pull_request, push]
 jobs:
   build:
     runs-on: ubuntu-latest
