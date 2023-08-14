@@ -3,7 +3,7 @@ export function AppSettings() {
 
   const appSettings = {}
 
-  if (env === 'production') {
+  if (env === 'production' || env === 'test') {
     appSettings.apiBasePath = 'http://localhost:8080'
   } else {
     const ignore = require('../ignore.json')
