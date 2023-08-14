@@ -6,31 +6,17 @@ import {
 } from '@testing-library/react-native'
 import { mockNavigation } from '../mocks/navigation-mock'
 import MainScreen from '../../src/screens/MainScreen'
-import {
-  jest,
-  describe,
-  beforeEach,
-  it,
-  expect,
-  beforeAll,
-  afterAll,
-} from '@jest/globals'
+import { describe, beforeEach, it, expect } from '@jest/globals'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getStringValue, setStringValue } from '../../src/utils/asyncStorage'
 
 describe('MainScreen', () => {
-  beforeAll(() => {
-    jest.setTimeout(100000)
-  })
-  afterAll(() => {
-    jest.setTimeout(5000)
-  })
   beforeEach(async () => {
-    jest.setTimeout(100000)
     await waitFor(() => {
       render(<MainScreen />)
     })
-  })
+  }, 10000)
+
   it('should navigate to friends', async () => {
     await waitFor(() => {
       fireEvent.press(screen.getByLabelText('write-message'))
@@ -56,7 +42,7 @@ describe('MainScreen', () => {
     })
 
     it('should NOT show the tutorial the first time you start the app', async () => {
-      setStringValue('seenInstructions', 'true')
+      await setStringValue('seenInstructions', 'true')
       let tutorialModal
       await waitFor(() => {
         render(<MainScreen />)
@@ -65,7 +51,7 @@ describe('MainScreen', () => {
         tutorialModal = screen.queryByText(/Welcome to Sometimes!/i)
       })
       expect(tutorialModal).toBeFalsy()
-    })
+    }, 10000)
 
     it('should show the second and third modal after clicking each modal', async () => {
       await waitFor(() => {
