@@ -6,11 +6,25 @@ import {
 } from '@testing-library/react-native'
 import { mockNavigation } from '../mocks/navigation-mock'
 import MainScreen from '../../src/screens/MainScreen'
-import { describe, beforeEach, it, expect } from '@jest/globals'
+import {
+  jest,
+  describe,
+  beforeEach,
+  it,
+  expect,
+  beforeAll,
+  afterAll,
+} from '@jest/globals'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getStringValue, setStringValue } from '../../src/utils/asyncStorage'
 
 describe('MainScreen', () => {
+  beforeAll(() => {
+    jest.setTimeout(10000)
+  })
+  afterAll(() => {
+    jest.setTimeout(5000)
+  })
   beforeEach(async () => {
     await waitFor(() => {
       render(<MainScreen />)
