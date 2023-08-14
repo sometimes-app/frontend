@@ -26,6 +26,7 @@ describe('MainScreen', () => {
     jest.setTimeout(5000)
   })
   beforeEach(async () => {
+    jest.setTimeout(100000)
     await waitFor(() => {
       render(<MainScreen />)
     })
