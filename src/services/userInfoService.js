@@ -1,7 +1,7 @@
 import { Configuration } from '../client/configuration'
 // eslint-disable-next-line no-unused-vars
 import { UserInfoApi, UserInfo } from '../client/api'
-import { apiBasePath } from '../../ignore.json'
+import { AppSettings } from '../appsettings'
 
 export class UserInfoService {
   #configParams = {
@@ -9,7 +9,7 @@ export class UserInfoService {
     username: undefined,
     password: undefined,
     accessToken: undefined,
-    basePath: apiBasePath,
+    basePath: AppSettings().apiBasePath,
     baseOptions: undefined,
     formDataCtor: undefined,
   }
