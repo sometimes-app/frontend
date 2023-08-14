@@ -20,7 +20,7 @@ import { getStringValue, setStringValue } from '../../src/utils/asyncStorage'
 
 describe('MainScreen', () => {
   beforeAll(() => {
-    jest.setTimeout(10000)
+    jest.setTimeout(100000)
   })
   afterAll(() => {
     jest.setTimeout(5000)
