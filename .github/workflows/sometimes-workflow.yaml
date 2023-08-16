@@ -1,10 +1,6 @@
 name: Sometimes
 run-name: ${{ github.ref_name }} - ${{ github.event.head_commit.message }}
-on:
-  push:
-  pull-request:
-    - dev
-    - master
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
