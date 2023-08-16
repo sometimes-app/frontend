@@ -37,5 +37,5 @@ jobs:
         with:
           path: '**/coverage'
           key: sometimes-coverage-folder
-      - run: | 
-        ls
+      - run: |
+          ls
