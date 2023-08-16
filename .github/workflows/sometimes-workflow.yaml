@@ -23,4 +23,19 @@ jobs:
         with:
           path: '**/node_modules'
           key: sometimes-node-modules
+      - uses: actions/cache@v3
+        with:
+          path: '**/coverage'
+          key: sometimes-coverage-folder
       - run: npm run test
+  coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: '**/coverage'
+          key: sometimes-coverage-folder
+      - run: | 
+        ls
