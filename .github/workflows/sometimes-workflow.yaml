@@ -1,5 +1,5 @@
 name: Sometimes
-run-name: ${{ github.keys }} build
+run-name: ${{ github.K }} build
 on: [push]
 jobs:
   build:
@@ -37,5 +37,7 @@ jobs:
           path: '**/coverage'
           key: sometimes-coverage-folder
       - run: |
+          echo {{github.event_name}}
+          echo {{github.ref_name}}
           ls
           npm --version
