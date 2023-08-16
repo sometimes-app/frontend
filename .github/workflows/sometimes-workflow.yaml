@@ -37,7 +37,7 @@ jobs:
           path: '**/coverage'
           key: sometimes-coverage-folder
       - run: |
-          echo {{github.event_name}}
-          echo {{github.ref_name}}
+          echo ${{github.event_name}}
+          echo ${{github.ref_name}}
           ls
           npm --version
