@@ -1,5 +1,5 @@
 name: Sometimes
-run-name: ${{ github.event.pull_request.title }} - ${{ github.event.commits[0].message }}
+run-name: ${{ github.event.pull_request.title }} - ${{ github.event.pull_request.head.sha }}
 on: [pull_request]
 jobs:
   build:
