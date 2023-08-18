@@ -37,47 +37,44 @@ jobs:
         with:
           path: '**/coverage'
           key: sometimes-coverage-folder
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            cd coverage/lcov-report
-            html_content=$(cat index.html)  # Replace with the actual path to your HTML file
+      - run: |
+          cd coverage/lcov-report
+          html_content=$(cat index.html)  # Replace with the actual path to your HTML file
 
-            read -ra percentages <<< $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
-            read -ra categories <<< $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
-            read -ra fractions <<< $(echo "$html_content" | grep -o "<span class='fraction'>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          read -ra percentages <<< $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          read -ra categories <<< $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          read -ra fractions <<< $(echo "$html_content" | grep -o "<span class='fraction'>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
 
-            row1="| Passed | Category | Percentage | Covered/Total |"
-            row2="|----------|----------|----------|----------|"
+          row1="| Passed | Category | Percentage | Covered/Total |"
+          row2="|----------|----------|----------|----------|"
 
-            passing_values=()
-            for percent_string in "${percentages[@]}"; do
-                number_string="${percent_string%\%}"
-                percent_number=$(echo "$number_string / 100" | bc -l)
-                passing_value=$(echo .80 | bc -l)
-                is_passing=$(echo "$percent_number >= $passing_value" | bc -l)
-                if [ $is_passing -eq 1 ]; then
-                    passing_values+=(":white_check_mark:")
-                else
-                    passing_values+=(":x:")
-                fi
-            done
+          passing_values=()
+          for percent_string in "${percentages[@]}"; do
+              number_string="${percent_string%\%}"
+              percent_number=$(echo "$number_string / 100" | bc -l)
+              passing_value=$(echo .80 | bc -l)
+              is_passing=$(echo "$percent_number >= $passing_value" | bc -l)
+              if [ $is_passing -eq 1 ]; then
+                  passing_values+=(":white_check_mark:")
+              else
+                  passing_values+=(":x:")
+              fi
+          done
 
-            statements_row="| ${passing_values[0]} | ${categories[0]} | ${percentages[0]} | ${fractions[0]} |"
-            branches_row="| ${passing_values[1]} | ${categories[1]} | ${percentages[1]} | ${fractions[1]} |"
-            functions_row="| ${passing_values[2]} | ${categories[2]} | ${percentages[2]} | ${fractions[2]} |"
-            lines_row="| ${passing_values[3]} | ${categories[3]} | ${percentages[3]} | ${fractions[3]} |"
+          statements_row="| ${passing_values[0]} | ${categories[0]} | ${percentages[0]} | ${fractions[0]} |"
+          branches_row="| ${passing_values[1]} | ${categories[1]} | ${percentages[1]} | ${fractions[1]} |"
+          functions_row="| ${passing_values[2]} | ${categories[2]} | ${percentages[2]} | ${fractions[2]} |"
+          lines_row="| ${passing_values[3]} | ${categories[3]} | ${percentages[3]} | ${fractions[3]} |"
 
-            table="${row1}\n
-              ${row2}\n
-              ${statements_row}\n
-              ${branches_row}\n
-              ${functions_row}\n
-              ${lines_row}"
+          table="${row1}\n
+            ${row2}\n
+            ${statements_row}\n
+            ${branches_row}\n
+            ${functions_row}\n
+            ${lines_row}"
 
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: $table
-            })
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/REPO_OWNER/REPO_NAME/issues/PR_NUMBER/comments \
+            -d '{"body":"Your comment here"}'
