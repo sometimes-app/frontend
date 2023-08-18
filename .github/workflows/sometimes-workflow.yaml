@@ -37,7 +37,7 @@ jobs:
         with:
           path: '**/coverage'
           key: sometimes-coverage-folder
-      - uses: action/github-script@v5
+      - uses: actions/github-script@v6
         with:
           script: |
             cd coverage/lcov-report
