@@ -1,9 +1,9 @@
 name: Sometimes
 run-name: ${{ github.event.pull_request.title }} - ${{ github.event.pull_request.head.sha }}
 on: [pull_request]
-permissions:
-  issues: 'write'
 jobs:
+  permissions:
+    issues: 'write'
   build:
     runs-on: ubuntu-latest
     steps:
