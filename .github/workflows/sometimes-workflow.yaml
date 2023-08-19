@@ -29,11 +29,10 @@ jobs:
           key: sometimes-coverage-folder
       - run: npm run test
   coverage:
-    permissions:
-      issues: write
     needs: test
     runs-on: ubuntu-latest
-    if:
+    permissions:
+      issues: write
     steps:
       - uses: actions/cache@v3
         with:
