@@ -76,5 +76,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/ascala7/sometimes-app/frontend/issues/${{ github.event.number }}/comments
+            https://api.github.com/repos/ascala7/frontend/issues/${{ github.event.number }}/comments
             -d '{"body": "$table"}'
