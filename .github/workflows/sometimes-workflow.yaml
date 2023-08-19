@@ -49,6 +49,7 @@ jobs:
           row1="| Passed | Category | Percentage | Covered/Total |"
           row2="|----------|----------|----------|----------|"
 
+          any_failed=1
           passing_values=()
           for percent_string in "${percentages[@]}"; do
               number_string="${percent_string%\%}"
@@ -59,6 +60,7 @@ jobs:
                   passing_values+=(":white_check_mark:")
               else
                   passing_values+=(":x:")
+                  any_failed=0
               fi
           done
 
