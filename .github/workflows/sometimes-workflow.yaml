@@ -47,6 +47,7 @@ jobs:
           read -ra percentages <<< $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
           read -ra categories <<< $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
           read -ra fractions <<< $(echo "$html_content" | grep -o "<span class=.fraction.>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          echo $html_content
 
           echo $percentages
           echo $categories
