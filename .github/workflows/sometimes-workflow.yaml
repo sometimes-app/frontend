@@ -65,6 +65,11 @@ jobs:
               fi
           done
 
+          echo $passing_values
+          echo $categories
+          echo $percentages
+          echo $fractions
+
           statements_row="| ${passing_values[0]} | ${categories[0]} | ${percentages[0]} | ${fractions[0]} |"
           branches_row="| ${passing_values[1]} | ${categories[1]} | ${percentages[1]} | ${fractions[1]} |"
           functions_row="| ${passing_values[2]} | ${categories[2]} | ${percentages[2]} | ${fractions[2]} |"
