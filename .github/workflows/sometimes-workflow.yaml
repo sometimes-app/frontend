@@ -43,14 +43,14 @@ jobs:
           cd coverage/lcov-report
           html_content=$(cat index.html)  # Replace with the actual path to your HTML file
 
-          echo html_content
+          echo $html_content
           read -ra percentages <<< $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
           read -ra categories <<< $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
           read -ra fractions <<< $(echo "$html_content" | grep -o "<span class=.fraction.>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
 
-          echo percentages
-          echo categories
-          echo fractions
+          echo $percentages
+          echo $categories
+          echo $fractions
 
           row1="| Passed | Category | Percentage | Covered/Total |"
           row2="|----------|----------|----------|----------|"
