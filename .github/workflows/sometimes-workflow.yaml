@@ -87,6 +87,8 @@ jobs:
               fi
           done
 
+
+          echo "{\"body\":\"${row1}\n${row2}\n${statements_row}\n${branches_row}\n${functions_row}\n${lines_row}\"}"
           # update comment or post new one if never posted before
           if [ $comment_posted -eq 1 ]; then
               curl -L \
