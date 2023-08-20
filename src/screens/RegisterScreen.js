@@ -11,24 +11,27 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { authentication } from '../../firebaseConfig'
 import { colors, globalStyle } from '../styles/styles'
 import Header from '../components/Header'
+import { useNavigation } from '@react-navigation/native'
 
 /** Register Screen */
 const RegisterScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigation = useNavigation()
+
   const RegisterUser = () => {
     createUserWithEmailAndPassword(authentication, email, password).catch(
       (err) => {
         console.log(err)
-      }
+      },
     )
   }
 
   return (
     <View style={globalStyle.background}>
       <View style={globalStyle.container}>
-        <Header showBack={true} showProfile={false} />
+        <Header navigation={navigation} showBack={true} showProfile={false} />
         <Text style={styles.titleText}>Create an account</Text>
         <TextInput
           style={styles.email}

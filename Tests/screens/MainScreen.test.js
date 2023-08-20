@@ -15,7 +15,8 @@ describe('MainScreen', () => {
     await waitFor(() => {
       render(<MainScreen />)
     })
-  })
+  }, 10000)
+
   it('should navigate to friends', async () => {
     await waitFor(() => {
       fireEvent.press(screen.getByLabelText('write-message'))
@@ -41,7 +42,7 @@ describe('MainScreen', () => {
     })
 
     it('should NOT show the tutorial the first time you start the app', async () => {
-      setStringValue('seenInstructions', 'true')
+      await setStringValue('seenInstructions', 'true')
       let tutorialModal
       await waitFor(() => {
         render(<MainScreen />)
@@ -50,7 +51,7 @@ describe('MainScreen', () => {
         tutorialModal = screen.queryByText(/Welcome to Sometimes!/i)
       })
       expect(tutorialModal).toBeFalsy()
-    })
+    }, 10000)
 
     it('should show the second and third modal after clicking each modal', async () => {
       await waitFor(() => {

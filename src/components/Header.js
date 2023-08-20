@@ -79,6 +79,7 @@ Header.propTypes = {
   showBack: PropTypes.bool,
   showProfile: PropTypes.bool,
   showFriends: PropTypes.bool,
+  navigation: PropTypes.object,
 }
 
 Header.defaultProps = {

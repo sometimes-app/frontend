@@ -12,4 +12,9 @@ describe('Register Screen', () => {
     fireEvent.press(screen.getByText('Sign Up'))
     expect(createUserWithEmailAndPassword).toHaveBeenCalledTimes(1)
   })
+
+  it('should press the go back screen', () => {
+    fireEvent.press(screen.getByTestId('back-button'))
+    expect(mockNavigation.goBack).toHaveBeenCalledTimes(1)
+  })
 })

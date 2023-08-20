@@ -1,0 +1,121 @@
+name: Sometimes
+run-name: ${{ github.event.pull_request.title }}
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: sometimes-node-modules
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm ci
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: sometimes-node-modules
+      - uses: actions/cache@v3
+        with:
+          path: '**/coverage'
+          key: sometimes-coverage-folder
+      - run: npm run test
+  coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: '**/coverage'
+          key: sometimes-coverage-folder
+      - run: |
+          cd coverage/lcov-report
+          html_content=$(cat index.html)  # Replace with the actual path to your HTML file
+
+          read -ra percentages <<< $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          read -ra categories <<< $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          read -ra fractions <<< $(echo "$html_content" | grep -o "<span class=.fraction.>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+
+          echo $(echo "$html_content" | grep -o "<span class=\"strong\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          echo $(echo "$html_content" | grep -o "<span class=\"quiet\">.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+          echo $(echo "$html_content" | grep -o "<span class=.fraction.>.*</span>" | sed -E "s/<\/?span[^>]*>//g")
+
+
+          echo $percentages
+          echo $categories
+          echo $fractions
+
+          row1="| Passed | Category | Percentage | Covered/Total |"
+          row2="|----------|----------|----------|----------|"
+
+          any_failed=1
+          passing_values=()
+          for percent_string in "${percentages[@]}"; do
+              number_string="${percent_string%\%}"
+              percent_number=$(echo "$number_string / 100" | bc -l)
+              passing_value=$(echo .80 | bc -l)
+              is_passing=$(echo "$percent_number >= $passing_value" | bc -l)
+              if [ $is_passing -eq 1 ]; then
+                  passing_values+=(":white_check_mark:")
+              else
+                  passing_values+=(":x:")
+                  any_failed=0
+              fi
+          done
+
+          statements_row="| ${passing_values[0]} | ${categories[0]} | ${percentages[0]} | ${fractions[0]} |"
+          branches_row="| ${passing_values[1]} | ${categories[1]} | ${percentages[1]} | ${fractions[1]} |"
+          functions_row="| ${passing_values[2]} | ${categories[2]} | ${percentages[2]} | ${fractions[2]} |"
+          lines_row="| ${passing_values[3]} | ${categories[3]} | ${percentages[3]} | ${fractions[3]} |"
+
+          # get comments on PR and check if coverage has been posted
+          comments=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/sometimes-app/frontend/issues/${{ github.event.number }}/comments | jq -r '.[] | "\(.body)  ID:\(.id)"')
+
+          # check if it contains the header markdown row
+          comment_posted=0
+          comment_id=''
+          for comment in "${comments[@]}"; do
+              if [[ $comment == *$row1* ]]; then
+                  comment_posted=1
+                  comment_id=${comment##*ID:} # parse string and remove just the id
+              fi
+          done
+
+          echo Table:
+          echo "{\"body\":\"${row1}\n${row2}\n${statements_row}\n${branches_row}\n${functions_row}\n${lines_row}\"}"
+          echo
+          echo
+
+          # update comment or post new one if never posted before
+          if [ $comment_posted -eq 1 ]; then
+              curl -L \
+                  -X PATCH \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "X-GitHub-Api-Version: 2022-11-28" \
+                  https://api.github.com/repos/sometimes-app/frontend/issues/comments/$comment_id \
+                  -d "{\"body\":\"${row1}\n${row2}\n${statements_row}\n${branches_row}\n${functions_row}\n${lines_row}\"}"
+          else
+              curl -L \
+                  -X POST \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "X-GitHub-Api-Version: 2022-11-28" \
+                  https://api.github.com/repos/sometimes-app/frontend/issues/${{ github.event.number }}/comments \
+                  -d "{\"body\":\"${row1}\n${row2}\n${statements_row}\n${branches_row}\n${functions_row}\n${lines_row}\"}"
+          fi

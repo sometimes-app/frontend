@@ -38,7 +38,7 @@ const CreateMScreen = ({ route }) => {
   const navigation = useNavigation()
 
   const filteredFriends = friends.filter((friend) =>
-    friend.name.toLowerCase().includes(search.toLowerCase())
+    friend.name.toLowerCase().includes(search.toLowerCase()),
   )
 
   useEffect(() => {

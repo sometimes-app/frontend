@@ -1,7 +1,7 @@
 import { mockNavigation } from './Tests/mocks/navigation-mock'
 
 jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+  require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 )
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
@@ -25,13 +25,7 @@ jest.mock('firebase/auth', () => {
   }
 })
 
-jest.mock('./ignore.json', () => {
-  return {
-    apiBasePath: 'http://localhost:8080',
-  }
-})
-
-jest.mock('../frontend/firebaseConfig', () => {
+jest.mock('./firebaseConfig', () => {
   return {
     authentication: {},
   }
